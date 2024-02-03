@@ -8,6 +8,8 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.2"
 activityCompose = "1.8.0"
 composeBom = "2023.08.00"
+hilt = "2.48"
+navigation = "2.5.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,7 +27,23 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+#hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
+hilt-android-compiler = {group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt"}
+
+#navigation
+navigation-compose = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
+
+#retrofit
+
+#kotlin-serialization
+
+#coil
+
+#naver map
+
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+hiltAndroid = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}
