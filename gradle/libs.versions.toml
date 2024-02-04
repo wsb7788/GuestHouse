@@ -10,6 +10,8 @@ activityCompose = "1.8.0"
 composeBom = "2023.08.00"
 hilt = "2.48"
 navigation = "2.5.3"
+featureDelivery = "2.1.0"
+ktor = "2.3.8" # https://ktor.io/docs/getting-started-ktor-client-chat.html#java-exec
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,6 +28,8 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+feature-delivery = { group = "com.google.android.play", name = "feature-delivery", version.ref = "featureDelivery"}
+feature-delivery-ktx = { group = "com.google.android.play", name = "feature-delivery-ktx", version.ref = "featureDelivery"}
 
 #hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
@@ -34,7 +38,10 @@ hilt-android-compiler = {group = "com.google.dagger", name = "hilt-android-compi
 #navigation
 navigation-compose = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
 
-#retrofit
+#ktor
+ktor-core = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor"}
+ktor-cio = {group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor"}
+ktor-websockets = {group = "io.ktor", name = "ktor-client-websockets", version.ref = "ktor"}
 
 #kotlin-serialization
 
