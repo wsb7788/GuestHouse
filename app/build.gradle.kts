@@ -71,6 +71,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.lifecycle.runtime.compose)
+
     implementation(libs.hilt.android)
     implementation(libs.hilt.android.compiler)
 
