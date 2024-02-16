@@ -5,6 +5,7 @@ plugins {
 
     kotlin("kapt")
     alias(libs.plugins.hiltAndroid)
+    id("hilt")
 }
 
 android {
