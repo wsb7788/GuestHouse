@@ -11,8 +11,12 @@ dependencies {
 gradlePlugin {
     plugins {
         register("gh.hilt") {
-            id = "hilt"
+            id = "gh.hilt"
             implementationClass = "plugin.HiltPlugin"
+        }
+        register("gh.application") {
+            id = "gh.application"
+            implementationClass = "plugin.ApplicationPlugin"
         }
     }
 }
