@@ -9,14 +9,14 @@ dependencies {
 }
 
 gradlePlugin {
-    plugins {
-        register("gh.hilt") {
-            id = "gh.hilt"
+    /*plugins {
+        register("hilt") {
+            id = "hiltz"
             implementationClass = "plugin.HiltPlugin"
         }
-        register("gh.application") {
-            id = "gh.application"
+        register("application") {
+            id = "applicationz"
             implementationClass = "plugin.ApplicationPlugin"
         }
-    }
+    }*/
 }

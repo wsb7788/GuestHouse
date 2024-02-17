@@ -14,40 +14,46 @@ import org.gradle.kotlin.dsl.getByType
 
 internal class ApplicationPlugin: Plugin<Project>{
     override fun apply(target: Project) {
-        applyPlugin(target.pluginManager, target.getVersionCatalog())
-        applyAndroidExtensions(target.extensions.getByType(CommonExtension::class))
-        applyDependency(target.dependencies, target.getVersionCatalog())
-    }
-
-    private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
-        apply(libs.getPluginId("androidApplication"))
-        apply(libs.getPluginId("kotlinAndroid"))
-    }
-
-    private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) = with(extensions) {
-
-        compileSdk = Build.COMPILE_SDK
-
-        defaultConfig {
-
-            minSdk = Build.MIN_SDK
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-            compileOptions {
-                sourceCompatibility = Build.SOURCE_COMPATIBILITY
-                targetCompatibility = Build.TARGET_COMPATIBILITY
-            }
-
-            kotlinOptions {
-                jvmTarget = Build.JVM_TARGET
-            }
-
-
+        with(target){
+            configureApplication()
         }
     }
+}
 
-    private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = with(handler) {
-
-    }
+internal fun Project.configureApplication() {
+        applyPlugin(pluginManager, getVersionCatalog())
+        applyAndroidExtensions(extensions.getByType(CommonExtension::class))
+        applyDependency(dependencies, getVersionCatalog())
 
 }
+private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
+    apply(libs.getPluginId("androidApplication"))
+    apply(libs.getPluginId("kotlinAndroid"))
+}
+
+private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) = with(extensions) {
+
+    compileSdk = Build.COMPILE_SDK
+
+    defaultConfig {
+
+        minSdk = Build.MIN_SDK
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        compileOptions {
+            sourceCompatibility = Build.SOURCE_COMPATIBILITY
+            targetCompatibility = Build.TARGET_COMPATIBILITY
+        }
+
+        kotlinOptions {
+            jvmTarget = Build.JVM_TARGET
+        }
+
+
+    }
+}
+
+private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = with(handler) {
+
+}
+

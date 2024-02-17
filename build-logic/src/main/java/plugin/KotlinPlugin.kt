@@ -8,17 +8,25 @@ import org.gradle.kotlin.dsl.getByType
 
 internal class KotlinPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        applyPlugin(target.pluginManager)
-        applyJavaPluginExtension(target.extensions.getByType())
+        with(target){
+            configureKotlin()
+        }
     }
 
-    private fun applyPlugin(manager: PluginManager) = with(manager) {
-        apply("kotlinJvm")
-    }
 
-    private fun applyJavaPluginExtension(extension: JavaPluginExtension) = with(extension) {
-        sourceCompatibility = Build.SOURCE_COMPATIBILITY
-        targetCompatibility = Build.TARGET_COMPATIBILITY
-    }
 
+}
+
+private fun Project.configureKotlin() {
+    applyPlugin(pluginManager)
+    applyJavaPluginExtension(extensions.getByType())
+}
+
+private fun applyPlugin(manager: PluginManager) = with(manager) {
+    apply("kotlinJvm")
+}
+
+private fun applyJavaPluginExtension(extension: JavaPluginExtension) = with(extension) {
+    sourceCompatibility = Build.SOURCE_COMPATIBILITY
+    targetCompatibility = Build.TARGET_COMPATIBILITY
 }

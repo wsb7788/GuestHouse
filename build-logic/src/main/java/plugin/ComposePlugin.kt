@@ -7,5 +7,6 @@ internal class ComposePlugin {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
-    }*/
+    }
+    */
 }
