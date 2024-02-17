@@ -13,9 +13,9 @@ import org.gradle.api.plugins.PluginManager
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
-internal class HiltPlugin: Plugin<Project> {
+internal class HiltPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        with(target){
+        with(target) {
             configureHilt()
         }
     }
@@ -26,7 +26,8 @@ internal fun Project.configureHilt() {
     applyDependency(dependencies, getVersionCatalog())
     applyKapt(extensions.getByType())
 }
-private fun applyPlugin(manager: PluginManager, libs : VersionCatalog) = with(manager) {
+
+private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
     apply(libs.getPluginId("hiltAndroid"))
     apply("kotlin-kapt")
 }

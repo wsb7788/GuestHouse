@@ -8,13 +8,10 @@ import org.gradle.kotlin.dsl.getByType
 
 internal class KotlinPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        with(target){
+        with(target) {
             configureKotlin()
         }
     }
-
-
-
 }
 
 private fun Project.configureKotlin() {

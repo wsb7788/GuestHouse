@@ -1,5 +1,9 @@
-import plugin.configureApplication
+import plugin.configureAndroid
 import plugin.configureHilt
 
-configureApplication()
+plugins {
+    id("com.android.application")
+}
+
+configureAndroid()
 configureHilt()
