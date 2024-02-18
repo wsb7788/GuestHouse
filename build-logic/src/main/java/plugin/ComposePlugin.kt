@@ -5,11 +5,18 @@ import extention.androidExtension
 import extention.debugImplementation
 import extention.getVersionCatalog
 import extention.implementation
-import gradle.kotlin.dsl.accessors._b413992943a47a18774147573fc9efcd.androidTestImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.dsl.DependencyHandler
+
+internal class ComposePlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            configureCompose()
+        }
+    }
+}
 
 internal fun Project.configureCompose() {
     applyAndroidExtensions(androidExtension, getVersionCatalog())
@@ -40,23 +47,12 @@ private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = 
     // or only import the main APIs for the underlying toolkit systems,
     // such as input and measurement/layout
     implementation(libs.findLibrary("androidx-ui").get())
+
     // Android Studio Preview support
     implementation(libs.findLibrary("androidx-ui-tooling-preview").get())
     debugImplementation(libs.findLibrary("androidx-ui-tooling").get())
-    // UI Tests
-    androidTestImplementation(libs.findLibrary("androidx-ui-test-junit4").get())
-    debugImplementation(libs.findLibrary("androidx-ui-test-manifest").get())
-    debugImplementation(libs.findLibrary("androidx-ui-test-manifest").get())
 
     //compose-lifecycle(collectAsStateWithLifecycle)
     implementation(libs.findLibrary("lifecycle-runtime-compose").get())
 
-}
-
-internal class ComposePlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            configureCompose()
-        }
-    }
 }

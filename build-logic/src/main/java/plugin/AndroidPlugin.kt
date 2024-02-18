@@ -8,7 +8,6 @@ import extention.kotlinOptions
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
-import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.plugins.PluginManager
 import org.gradle.kotlin.dsl.getByType
 
@@ -23,8 +22,6 @@ internal class AndroidPlugin : Plugin<Project> {
 internal fun Project.configureAndroid() {
     applyPlugin(pluginManager, getVersionCatalog())
     applyAndroidExtensions(extensions.getByType(CommonExtension::class))
-    applyDependency(dependencies, getVersionCatalog())
-
 }
 
 private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
@@ -39,7 +36,6 @@ private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) =
     defaultConfig {
 
         minSdk = Build.MIN_SDK
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         compileOptions {
             sourceCompatibility = Build.SOURCE_COMPATIBILITY
@@ -51,8 +47,3 @@ private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) =
         }
     }
 }
-
-private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = with(handler) {
-
-}
-
