@@ -49,8 +49,6 @@ private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) =
         kotlinOptions {
             jvmTarget = Build.JVM_TARGET
         }
-
-
     }
 }
 

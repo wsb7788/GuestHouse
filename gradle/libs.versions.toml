@@ -13,6 +13,7 @@ navigation = "2.7.7"
 featureDelivery = "2.1.0"
 ktor = "2.3.8"
 org-jetbrains-kotlin-jvm = "1.9.0" # https://ktor.io/docs/getting-started-ktor-client-chat.html#java-exec
+kotlinCompilerExtensionVersion = "1.5.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
