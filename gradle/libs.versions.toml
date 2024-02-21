@@ -30,24 +30,24 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-feature-delivery = { group = "com.google.android.play", name = "feature-delivery", version.ref = "featureDelivery"}
-feature-delivery-ktx = { group = "com.google.android.play", name = "feature-delivery-ktx", version.ref = "featureDelivery"}
+feature-delivery = { group = "com.google.android.play", name = "feature-delivery", version.ref = "featureDelivery" }
+feature-delivery-ktx = { group = "com.google.android.play", name = "feature-delivery-ktx", version.ref = "featureDelivery" }
 
 #compose-lifecycle(collectAsStateWithLifecycle)
-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntime"}
+lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntime" }
 
 
 #hilt
-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
-hilt-android-compiler = {group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt"}
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
 #navigation
-navigation-compose = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 #ktor
-ktor-core = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor"}
-ktor-cio = {group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor"}
-ktor-websockets = {group = "io.ktor", name = "ktor-client-websockets", version.ref = "ktor"}
+ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-websockets = { group = "io.ktor", name = "ktor-client-websockets", version.ref = "ktor" }
 
 #kotlin-serialization
 
@@ -64,5 +64,5 @@ hilt-android-gradle-plugin = { group = "com.google.dagger", name = "hilt-android
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-hilt-android = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "orgJetbrainsKotlinJvm" }

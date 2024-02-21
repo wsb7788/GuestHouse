@@ -40,4 +40,3 @@ private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = 
 private fun applyKapt(extension: KaptExtension) = with(extension) {
     correctErrorTypes = true
 }
-
