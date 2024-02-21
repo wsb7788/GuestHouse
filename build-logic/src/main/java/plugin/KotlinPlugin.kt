@@ -20,7 +20,7 @@ private fun Project.configureKotlin() {
 }
 
 private fun applyPlugin(manager: PluginManager) = with(manager) {
-    apply("kotlinJvm")
+    apply("kotlin-jvm")
 }
 
 private fun applyJavaPluginExtension(extension: JavaPluginExtension) = with(extension) {

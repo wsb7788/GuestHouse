@@ -25,8 +25,8 @@ internal fun Project.configureAndroid() {
 }
 
 private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
-    apply(libs.getPluginId("androidApplication"))
-    apply(libs.getPluginId("kotlinAndroid"))
+    apply(libs.getPluginId("android-application"))
+    apply(libs.getPluginId("kotlin-android"))
 }
 
 private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) = with(extensions) {

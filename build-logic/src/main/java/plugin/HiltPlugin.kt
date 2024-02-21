@@ -28,7 +28,7 @@ internal fun Project.configureHilt() {
 }
 
 private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
-    apply(libs.getPluginId("hiltAndroid"))
+    apply(libs.getPluginId("hilt-android"))
     apply("kotlin-kapt")
 }
 
