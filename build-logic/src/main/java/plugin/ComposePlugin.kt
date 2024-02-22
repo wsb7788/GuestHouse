@@ -37,12 +37,14 @@ private fun applyAndroidExtensions(
         kotlinCompilerExtensionVersion =
             libs.findVersion("kotlinCompilerExtensionVersion").get().toString()
     }
+
 }
 
 private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = with(handler) {
 
     implementation(platform(libs.findLibrary("androidx-compose-bom").get()))
     implementation(libs.findLibrary("androidx-material3").get())
+    implementation(libs.findLibrary("androidx-activity-compose").get())
 
     // or only import the main APIs for the underlying toolkit systems,
     // such as input and measurement/layout

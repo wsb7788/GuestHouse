@@ -18,7 +18,7 @@ internal class AndroidTestPlugin : Plugin<Project> {
     }
 }
 
-private fun Project.configureAndroidTest() {
+internal fun Project.configureAndroidTest() {
     applyAndroidExtensions(extensions.getByType(CommonExtension::class))
     applyDependency(dependencies, getVersionCatalog())
 }

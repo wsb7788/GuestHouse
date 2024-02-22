@@ -6,7 +6,3 @@ plugins {
 android {
     namespace = "com.guesthouse.splash"
 }
-
-dependencies {
-
-}

@@ -1,4 +1,4 @@
-package com.guesthouse.aos.presentation.base
+package com.guesthouse.splash.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
