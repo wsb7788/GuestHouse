@@ -1,4 +1,4 @@
-package com.guesthouse.splash.base
+package com.guesthouse.base
 
 import kotlinx.coroutines.flow.StateFlow
 

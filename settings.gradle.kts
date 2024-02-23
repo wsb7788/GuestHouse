@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:base")
+
+
 pluginManagement {
     repositories {
         google {
@@ -26,5 +29,6 @@ dependencyResolutionManagement {
 rootProject.name = "GuestHouse"
 include(
     ":app",
-    ":feature:splash"
+    ":feature:splash",
+    ":core:base"
     )
