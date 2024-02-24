@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:base")
+
+
 pluginManagement {
     repositories {
         google {
@@ -14,6 +17,7 @@ pluginManagement {
     }
     includeBuild("build-logic")
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -23,4 +27,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "GuestHouse"
-include(":app")
+include(
+    ":app",
+    ":feature:splash",
+    ":core:base"
+    )

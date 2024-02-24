@@ -1,7 +1,10 @@
 package plugin
 
+import extention.getPluginId
+import extention.getVersionCatalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.plugins.PluginManager
 import org.gradle.kotlin.dsl.getByType
@@ -14,13 +17,14 @@ internal class KotlinPlugin : Plugin<Project> {
     }
 }
 
-private fun Project.configureKotlin() {
-    applyPlugin(pluginManager)
+internal fun Project.configureKotlin() {
+    applyPlugin(pluginManager, getVersionCatalog())
     applyJavaPluginExtension(extensions.getByType())
 }
 
-private fun applyPlugin(manager: PluginManager) = with(manager) {
-    apply("kotlin-jvm")
+
+private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
+    apply(libs.getPluginId("kotlin-jvm"))
 }
 
 private fun applyJavaPluginExtension(extension: JavaPluginExtension) = with(extension) {

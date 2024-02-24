@@ -15,7 +15,7 @@ internal class KotlinTestPlugin : Plugin<Project> {
     }
 }
 
-private fun Project.configureKotlinTest() {
+internal fun Project.configureKotlinTest() {
     applyDependency(dependencies, getVersionCatalog())
 }
 

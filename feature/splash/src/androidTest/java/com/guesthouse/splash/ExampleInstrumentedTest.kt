@@ -1,4 +1,4 @@
-package com.guesthouse.aos
+package com.guesthouse.splash
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.guesthouse.aos", appContext.packageName)
+        assertEquals("com.guesthouse.splash.test", appContext.packageName)
     }
 }

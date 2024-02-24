@@ -2,6 +2,7 @@ package plugin
 
 import Build
 import com.android.build.api.dsl.CommonExtension
+import extention.androidExtension
 import extention.getPluginId
 import extention.getVersionCatalog
 import extention.kotlinOptions
@@ -25,7 +26,6 @@ internal fun Project.configureAndroid() {
 }
 
 private fun applyPlugin(manager: PluginManager, libs: VersionCatalog) = with(manager) {
-    apply(libs.getPluginId("android-application"))
     apply(libs.getPluginId("kotlin-android"))
 }
 

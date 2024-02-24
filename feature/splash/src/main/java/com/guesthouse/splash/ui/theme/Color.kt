@@ -1,4 +1,4 @@
-package com.guesthouse.aos.ui.theme
+package com.guesthouse.splash.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
