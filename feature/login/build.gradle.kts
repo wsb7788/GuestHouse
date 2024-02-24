@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.guesthouse.login"
 }
+
+dependencies {
+    implementation(project(":core:designsystem"))
+}

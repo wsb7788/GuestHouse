@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:designsystem")
+
+
 include(":feature:login")
 
 
@@ -34,5 +37,6 @@ include(
     ":app",
     ":feature:splash",
     ":core:base",
-    ":feature:login"
+    ":feature:login",
+    ":core:designsystem"
     )
