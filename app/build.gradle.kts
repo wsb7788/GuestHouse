@@ -47,4 +47,5 @@ android {
 
 dependencies {
     implementation(project(":feature:splash"))
+    implementation(project(":feature:login"))
 }
