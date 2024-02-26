@@ -50,4 +50,7 @@ object GuestHouseIcons {
     val userLocation = R.drawable.icon_user_location
     val visible = R.drawable.icon_visible
     val selectPhotoEnable = R.drawable.icon_select_photo_enable
+    val loginEmail = R.drawable.icon_login_email
+    val socialLoginKaKao = R.drawable.icon_social_login_kakao
+    val socialLoginNaver = R.drawable.icon_social_login_naver
 }
