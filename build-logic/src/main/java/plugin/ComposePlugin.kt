@@ -57,4 +57,5 @@ private fun applyDependency(handler: DependencyHandler, libs: VersionCatalog) = 
     //compose-lifecycle(collectAsStateWithLifecycle)
     implementation(libs.findLibrary("lifecycle-runtime-compose").get())
 
+    implementation(libs.findLibrary("navigation-compose").get())
 }
