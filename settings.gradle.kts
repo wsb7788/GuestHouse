@@ -1,5 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:designsystem")
+
+
+include(":feature:login")
+
+
 include(":core:base")
 
 
@@ -30,5 +36,7 @@ rootProject.name = "GuestHouse"
 include(
     ":app",
     ":feature:splash",
-    ":core:base"
+    ":core:base",
+    ":feature:login",
+    ":core:designsystem"
     )
