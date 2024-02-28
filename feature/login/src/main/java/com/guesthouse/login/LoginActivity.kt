@@ -117,7 +117,12 @@ fun LoginIcon() {
             )
         }
         Spacer(modifier = Modifier.width(24.dp))
-        IconButton(onClick = {}, modifier = Modifier.size(54.dp)) {
+        IconButton(
+            onClick = {
+
+        },
+            modifier = Modifier.size(54.dp)
+        ) {
             Image(
                 painter = painterResource(id = GuestHouseIcons.socialLoginKakao),
                 contentDescription = stringResource(R.string.kakao_social_login_button)
