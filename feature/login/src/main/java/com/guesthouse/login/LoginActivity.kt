@@ -1,6 +1,7 @@
 package com.guesthouse.login
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.GuestHouseTheme
+import com.kakao.sdk.common.util.Utility
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class LoginActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
+
                     LoginScreen()
                 }
             }
@@ -47,11 +50,10 @@ class LoginActivity : ComponentActivity() {
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
-
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         LoginLogo()
         Spacer(modifier = Modifier.height(83.dp))
         LoginIcon()
@@ -69,6 +71,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun LoginLogo() {
+
     Image(
         modifier = Modifier.size(100.dp),
         painter = painterResource(id = GuestHouseIcons.socialLoginKakao),
