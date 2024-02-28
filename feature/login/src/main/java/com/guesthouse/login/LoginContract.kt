@@ -12,6 +12,6 @@ interface LoginContract : BaseContract<LoginContract.State, LoginContract.Event,
     }
 
     sealed interface Effect {
-
+        data object KakaoLogin : Effect
     }
 }
