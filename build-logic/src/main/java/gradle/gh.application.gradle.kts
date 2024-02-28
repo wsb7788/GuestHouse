@@ -1,5 +1,6 @@
 import plugin.configureAndroid
 import plugin.configureHilt
+import plugin.configureSocialLogin
 
 plugins {
     id("com.android.application")
@@ -7,3 +8,4 @@ plugins {
 
 configureAndroid()
 configureHilt()
+configureSocialLogin()
