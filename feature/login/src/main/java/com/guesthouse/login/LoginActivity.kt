@@ -1,7 +1,6 @@
 package com.guesthouse.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -17,6 +16,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -30,8 +30,12 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.GuestHouseTheme
-import com.kakao.sdk.common.util.Utility
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.guesthouse.base.use
+import kotlinx.coroutines.flow.collectLatest
 
+@AndroidEntryPoint
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,14 +53,26 @@ class LoginActivity : ComponentActivity() {
 }
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(viewModel: LoginViewModel = viewModel()) {
+    val (state, event, effect) = use(viewModel = viewModel)
+
+    LaunchedEffect(key1 = effect){
+        effect.collectLatest { effect ->
+            when(effect) {
+                else -> {}
+            }
+
+        }
+    }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LoginLogo()
         Spacer(modifier = Modifier.height(83.dp))
-        LoginIcon()
+        LoginIcon {
+            event(LoginContract.Event.OnKaKaoLoginClicked)
+        }
     }
 
     Column(
@@ -104,7 +120,7 @@ fun BusinessSignUp() {
 }
 
 @Composable
-fun LoginIcon() {
+fun LoginIcon(onKaKaoClicked: () -> Unit) {
     Row(
         modifier = Modifier,
         horizontalArrangement = Arrangement.Center,
@@ -119,8 +135,8 @@ fun LoginIcon() {
         Spacer(modifier = Modifier.width(24.dp))
         IconButton(
             onClick = {
-
-        },
+                onKaKaoClicked.invoke()
+            },
             modifier = Modifier.size(54.dp)
         ) {
             Image(
