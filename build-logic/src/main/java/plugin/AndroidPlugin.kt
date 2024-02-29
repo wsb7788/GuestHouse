@@ -2,7 +2,6 @@ package plugin
 
 import Build
 import com.android.build.api.dsl.CommonExtension
-import extention.androidExtension
 import extention.getPluginId
 import extention.getVersionCatalog
 import extention.kotlinOptions
@@ -34,6 +33,10 @@ private fun applyAndroidExtensions(extensions: CommonExtension<*, *, *, *, *>) =
     compileSdk = Build.COMPILE_SDK
 
     defaultConfig {
+
+        buildFeatures {
+            buildConfig = true
+        }
 
         minSdk = Build.MIN_SDK
 

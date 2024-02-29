@@ -20,7 +20,7 @@
 
 
                 <data android:host="oauth"
-                    android:scheme="kakao3d054d6b414feac6f78dfed8461cbefc" />
+                    android:scheme="@string/KAKAO_OAUTH_HOST" />
             </intent-filter>
         </activity>
 
