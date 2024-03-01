@@ -1,9 +1,7 @@
-package com.guesthouse.login
+package com.guesthouse.login.ui.screen
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,42 +17,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.guesthouse.designsystem.icon.GuestHouseIcons
-import com.guesthouse.login.ui.theme.GuestHouseTheme
-
-class LoginActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            GuestHouseTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    LoginScreen()
-                }
-            }
-        }
-    }
-}
+import com.guesthouse.login.R
 
 @Composable
-fun LoginScreen() {
-   Box(
-       modifier = Modifier.fillMaxSize(),
-       contentAlignment = Alignment.Center
-   ) {
-       Column(
-           modifier = Modifier.fillMaxSize(),
-           verticalArrangement = Arrangement.Center,
-           horizontalAlignment = Alignment.CenterHorizontally,
-       ) {
-           LoginLogo()
-           LoginIcon()
-       }
-   }
+fun LoginScreen(
+    onLoginClick:() -> Unit
+) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            LoginLogo()
+            LoginIcon(onLoginClick)
+        }
+    }
     Box(
         contentAlignment = Alignment.BottomCenter
     ) {
@@ -74,7 +55,9 @@ fun LoginLogo() {
 }
 
 @Composable
-fun LoginIcon() {
+fun LoginIcon(
+    onLoginClick: () -> Unit
+) {
     val images = listOf(GuestHouseIcons.socialLoginNaver, GuestHouseIcons.socialLoginKaKao, GuestHouseIcons.loginEmail, GuestHouseIcons.loginEmail)
     Row(
         modifier = Modifier
@@ -83,11 +66,13 @@ fun LoginIcon() {
         horizontalArrangement = Arrangement.spacedBy(24.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        images.forEach {  image ->
+        images.forEach { image ->
             Image(
                 painter = painterResource(id = image),
                 contentDescription = stringResource(id = R.string.icon),
-                modifier = Modifier.size(54.dp))
+                modifier = Modifier
+                    .clickable { onLoginClick() }
+                    .size(54.dp))
         }
     }
 }
@@ -99,12 +84,4 @@ fun BusinessSignUp() {
         text = stringResource(id = R.string.business_or_admin_sign_up),
         fontWeight = FontWeight.Bold,
     )
-}
-
-@Preview(showBackground = true, apiLevel = 33)
-@Composable
-fun GreetingPreview() {
-    GuestHouseTheme {
-        LoginScreen()
-    }
 }
