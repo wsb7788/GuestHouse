@@ -23,7 +23,7 @@ import com.guesthouse.login.R
 
 @Composable
 fun LoginScreen(
-    onLoginClick:() -> Unit
+    onEmailLoginClick:() -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -35,7 +35,7 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             LoginLogo()
-            LoginIcon(onLoginClick)
+            LoginIcon(onEmailLoginClick)
         }
     }
     Box(
@@ -56,7 +56,7 @@ fun LoginLogo() {
 
 @Composable
 fun LoginIcon(
-    onLoginClick: () -> Unit
+    onEmailLoginClick: () -> Unit
 ) {
     val images = listOf(GuestHouseIcons.socialLoginNaver, GuestHouseIcons.socialLoginKaKao, GuestHouseIcons.loginEmail, GuestHouseIcons.loginEmail)
     Row(
@@ -71,7 +71,19 @@ fun LoginIcon(
                 painter = painterResource(id = image),
                 contentDescription = stringResource(id = R.string.icon),
                 modifier = Modifier
-                    .clickable { onLoginClick() }
+                    .clickable {
+                        when (image) {
+                            GuestHouseIcons.socialLoginNaver -> {
+
+                            }
+                            GuestHouseIcons.socialLoginKaKao -> {
+
+                            }
+                            GuestHouseIcons.loginEmail -> {
+                                onEmailLoginClick()
+                            }
+                        }
+                    }
                     .size(54.dp))
         }
     }

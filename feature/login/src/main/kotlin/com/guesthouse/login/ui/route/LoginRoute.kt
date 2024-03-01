@@ -5,7 +5,7 @@ import com.guesthouse.login.ui.screen.LoginScreen
 
 @Composable
 fun LoginRoute(
-    onLoginClick:() -> Unit
+    onEmailLoginClick:() -> Unit
 ) {
-    LoginScreen(onLoginClick)
+    LoginScreen(onEmailLoginClick)
 }
