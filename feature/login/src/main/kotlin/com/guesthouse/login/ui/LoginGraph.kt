@@ -4,36 +4,31 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.guesthouse.login.ui.route.EMAIL_ROUTE
 import com.guesthouse.login.ui.route.EmailRoute
-import com.guesthouse.login.ui.route.LOGIN_ROUTE
 import com.guesthouse.login.ui.route.LoginRoute
-
-const val LOGIN_GRAPH_ROUTE = "login_graph_route"
+import com.navigation.navigation.GhGraphRoute
+import com.navigation.navigation.GhRoute
 
 fun NavGraphBuilder.loginGraph(
-    navController: NavController
+    navController: NavController,
 ) {
     navigation(
-        startDestination = LOGIN_ROUTE,
-        route = LOGIN_GRAPH_ROUTE,
+        startDestination = GhRoute.LOGIN.name,
+        route = GhGraphRoute.LOGIN_GRAPH.name,
     ) {
-        composable(route = LOGIN_ROUTE) {
+        composable(route = GhRoute.LOGIN.name) {
             LoginRoute(
-                navController = navController,
                 onLoginClick = { navController.navigateToEmail() }
             )
         }
 
-        composable(route = EMAIL_ROUTE) {
-            EmailRoute(
-                navController = navController
-            )
+        composable(route = GhRoute.EMAIL.name) {
+            EmailRoute()
         }
 
     }
 }
 
 fun NavController.navigateToEmail() {
-    navigate(EMAIL_ROUTE)
+    navigate(GhRoute.EMAIL.name)
 }

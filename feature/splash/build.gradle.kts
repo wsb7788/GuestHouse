@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.guesthouse.splash"
 }
+
+dependencies {
+    implementation(project(":core:navigation"))
+}

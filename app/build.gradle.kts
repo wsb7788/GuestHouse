@@ -48,4 +48,5 @@ android {
 dependencies {
     implementation(project(":feature:splash"))
     implementation(project(":feature:login"))
+    implementation(project(":core:navigation"))
 }
