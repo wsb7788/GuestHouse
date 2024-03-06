@@ -18,7 +18,7 @@ fun NavGraphBuilder.loginGraph(
     ) {
         composable(route = GhRoute.LOGIN.name) {
             LoginRoute(
-                onEmailLoginClick = { navController.navigateToEmail() }
+                onEmailLoginClick = navController::navigateToEmail
             )
         }
 
