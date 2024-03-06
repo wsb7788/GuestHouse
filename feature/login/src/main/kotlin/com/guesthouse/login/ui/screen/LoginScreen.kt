@@ -58,7 +58,7 @@ fun LoginLogo() {
 fun LoginIcon(
     onEmailLoginClick: () -> Unit
 ) {
-    val images = listOf(GuestHouseIcons.socialLoginNaver, GuestHouseIcons.socialLoginKaKao, GuestHouseIcons.loginEmail, GuestHouseIcons.loginEmail)
+    val images = listOf(GuestHouseIcons.socialLoginNaver, GuestHouseIcons.socialLoginKaKao, GuestHouseIcons.loginEmail, GuestHouseIcons.socialLoginGoogle)
     Row(
         modifier = Modifier
             .fillMaxWidth()
