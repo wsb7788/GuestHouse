@@ -1,13 +1,19 @@
 package com.guesthouse.login.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -21,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,6 +44,8 @@ fun EmailScreen(
         CloseScreen(onBackClick)
         EmailLogin()
         LoginIdInput()
+        LoginPwInput()
+        LoginButton()
     }
 }
 
@@ -90,4 +99,50 @@ fun LoginIdInput() {
             )
         },
     )
+}
+
+@Composable
+fun LoginPwInput() {
+    var text by remember { mutableStateOf("") }
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 24.dp, end = 24.dp, top = 16.dp),
+        value = text,
+        onValueChange = { text = it },
+        prefix = {
+            Image(
+                painter = painterResource(id = GuestHouseIcons.passwordDefault),
+                contentDescription = null,
+                modifier = Modifier.size(18.dp)
+            )
+        },
+        placeholder = {
+            Text(
+                fontSize = 12.sp,
+                color = Color(0xFFD4D4D4),
+                text = "비밀번호",
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        },
+    )
+}
+
+@Composable
+fun LoginButton() {
+    Button(
+        onClick = { /*TODO*/ },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 24.dp, end = 24.dp, top = 30.dp),
+        shape = RoundedCornerShape(12.dp),
+        contentPadding = PaddingValues(0.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4D4D4))
+        ) {
+        Text(
+            text = "로그인",
+            modifier = Modifier.padding(vertical = 14.dp),
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
