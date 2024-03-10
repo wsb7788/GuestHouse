@@ -1,3 +1,3 @@
 plugins {
-    id ("gh.kotlin")
+    id ("gh.entity")
 }

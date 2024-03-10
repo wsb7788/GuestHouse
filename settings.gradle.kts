@@ -1,5 +1,15 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":data:model")
+
+
+include(":core:network")
+
+
+
+include(":data:datasource")
+
+
 include(":data:repository")
 
 
@@ -16,9 +26,6 @@ include(":domain:usecase")
 
 
 include(":domain")
-
-
-include(":core:ui")
 
 
 include(":core:navigation")
