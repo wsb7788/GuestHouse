@@ -5,7 +5,7 @@ import com.guesthouse.login.ui.screen.EmailScreen
 
 @Composable
 fun EmailRoute(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     EmailScreen(onBackClick)
 }
