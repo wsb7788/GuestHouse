@@ -1,5 +1,17 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":domain:entity")
+
+
+include(":domain:repository")
+
+
+include(":domain:usecase")
+
+
+include(":domain")
+
+
 include(":core:ui")
 
 
