@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name=".LoginActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.GuestHouse" />
     </application>

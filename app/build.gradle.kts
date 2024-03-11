@@ -48,4 +48,12 @@ android {
 dependencies {
     implementation(project(":feature:splash"))
     implementation(project(":feature:login"))
+
+    implementation(project(":domain:repository"))
+
+    implementation(project(":data:repository"))
+    implementation(project(":data:datasource"))
+
+    implementation(project(":core:navigation"))
+    implementation(project(":core:network"))
 }

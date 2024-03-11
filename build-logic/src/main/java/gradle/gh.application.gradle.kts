@@ -1,4 +1,5 @@
 import plugin.configureAndroid
+import plugin.configureCompose
 import plugin.configureHilt
 
 plugins {
@@ -7,3 +8,4 @@ plugins {
 
 configureAndroid()
 configureHilt()
+configureCompose()
