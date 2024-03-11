@@ -14,5 +14,5 @@ interface DataSourceModule {
 
     @Binds
     @Singleton
-    fun provideLoginDataSource(loginDataSourceImpl: LoginDataSourceImpl): LoginDataSource
+    fun bindLoginDataSource(loginDataSourceImpl: LoginDataSourceImpl): LoginDataSource
 }

@@ -14,5 +14,5 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun provideLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository
+    fun bindLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository
 }
