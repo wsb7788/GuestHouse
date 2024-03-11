@@ -7,10 +7,6 @@ plugins {
     id("com.android.library")
 }
 
-android {
-    namespace = "com.guesthouse.network"
-}
-
 configureAndroid()
 configureHilt()
 
