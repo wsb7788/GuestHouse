@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="logo_image">게스트하우스 로고 이미지</string>
+    <string name="business_sign_up_button">비즈니스/관리자 회원가입 버튼</string>
+    <string name="naver_social_login_button">네이버 소셜 로그인 버튼</string>
+    <string name="kakao_social_login_button">카카오 소셜 로그인 버튼</string>
+    <string name="google_social_login_button">구글 소셜 로그인 버튼</string>
+    <string name="email_login_button">이메일 로그인 버튼</string>
     <string name="main_logo">메인로고</string>
     <string name="icon">아이콘</string>
     <string name="business_or_admin_sign_up">비즈니스/관리자 회원가입 ></string>
     <string name="email_login">이메일 로그인</string>
+    <string name="close_button">닫기 버튼</string>
 </resources>

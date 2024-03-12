@@ -1,4 +1,4 @@
-package com.guesthouse.login
+package com.guesthouse.login.ui.viewmodel
 
 import com.guesthouse.base.BaseContract
 

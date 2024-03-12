@@ -1,32 +1,36 @@
 package com.guesthouse.login.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.guesthouse.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
-) : ViewModel() {
+) : ViewModel(), LoginContract {
 
-//    val loginUiState: StateFlow<LoginUiState> = loginUiState().stateIn(
-//        scope = viewModelScope,
-//        started = SharingStarted.WhileSubscribed(5_000),
-//        initialValue = LoginUiState.Loading
-//    )
-//
-//    private fun loginUiState(): Flow<LoginUiState> {
-//        loginUseCase().map {
-//
-//        }
-//    }
+    private val _state: MutableStateFlow<LoginContract.State> = MutableStateFlow(LoginContract.State())
+    override val state: StateFlow<LoginContract.State> = _state.asStateFlow()
+
+    private val _effect: MutableSharedFlow<LoginContract.Effect> = MutableSharedFlow(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    override val effect: SharedFlow<LoginContract.Effect> = _effect.asSharedFlow()
+
+    override fun event(event: LoginContract.Event) = when(event) {
+        LoginContract.Event.OnKaKaoLoginClicked -> onKaKaoLoginClicked()
+    }
+
+    private fun onKaKaoLoginClicked() {
+        _effect.tryEmit(LoginContract.Effect.KakaoLogin)
+    }
+
 }
 
 sealed class LoginUiState<out T> {
