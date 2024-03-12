@@ -13,9 +13,12 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.guesthouse.designsystem.theme.Gray70
+import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.designsystem.theme.Primary
 import com.guesthouse.designsystem.theme.White70
 
@@ -73,7 +76,7 @@ fun GHButton(
 @Composable
 private fun GHButtonContent(
     text: String,
-    leadingIcon: @Composable() (() -> Unit)?
+    leadingIcon: @Composable (() -> Unit)?
 ) {
     if (leadingIcon != null) {
         Box(Modifier.sizeIn(maxHeight = ButtonDefaults.IconSize)) {
@@ -92,18 +95,21 @@ private fun GHButtonContent(
     ) {
         Text(
             text = text,
+            fontFamily = pretendard,
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp
         )
     }
 
 }
 
-@Preview(group = "GHButton")
+@Preview(group = "GHButton", apiLevel = 33)
 @Composable
 fun GHButtonPreview() {
     GHButton(onClick = { }, text = "로그인")
 }
 
-@Preview(group = "GHButton")
+@Preview(group = "GHButton", apiLevel = 33)
 @Composable
 fun GHButtonDisabledPreview() {
     GHButton(onClick = { }, text = "로그인", enabled = false)
