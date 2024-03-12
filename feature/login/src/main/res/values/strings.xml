@@ -1,10 +1,15 @@
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
     <string name="title_activity_login">LoginActivity</string>
     <string name="logo_image">GuestHouse Logo Image</string>
-    <string name="business_sign_up_text">비즈니스 / 관리자 회원가입</string>
     <string name="business_sign_up_button">Business SignUp Button</string>
     <string name="naver_social_login_button">Naver social login button</string>
     <string name="kakao_social_login_button">Kakao social login button</string>
     <string name="google_social_login_button">Google social login button</string>
     <string name="email_login_button">Email login button</string>
+    <string name="main_logo">mainLogo</string>
+    <string name="icon">icon</string>
+    <string name="business_or_admin_sign_up">businessOrAdminSignUp</string>
+    <string name="email_login">emailLogin</string>
+    <string name="close_button">closeButton</string>
 </resources>

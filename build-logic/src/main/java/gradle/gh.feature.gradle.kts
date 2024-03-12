@@ -1,6 +1,7 @@
 import plugin.configureAndroid
 import plugin.configureAndroidTest
 import plugin.configureCompose
+import plugin.configureFeature
 import plugin.configureHilt
 import plugin.configureKotlinTest
 import plugin.configureNavigation
@@ -15,3 +16,4 @@ configureCompose()
 configureNavigation()
 configureAndroidTest()
 configureKotlinTest()
+configureFeature()

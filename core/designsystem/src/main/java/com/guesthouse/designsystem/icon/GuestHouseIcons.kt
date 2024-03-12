@@ -14,6 +14,7 @@ object GuestHouseIcons {
     val checked = R.drawable.icon_checked
     val crown = R.drawable.icon_crown
     val delete = R.drawable.icon_delete
+    val emailDefault = R.drawable.icon_email_default
     val emailEntered = R.drawable.icon_email_entered
     val exitChattingRoom = R.drawable.icon_exit_chatting_room
     val filter = R.drawable.icon_filter
@@ -50,5 +51,8 @@ object GuestHouseIcons {
     val userLocation = R.drawable.icon_user_location
     val visible = R.drawable.icon_visible
     val selectPhotoEnable = R.drawable.icon_select_photo_enable
+    val loginEmail = R.drawable.icon_login_email
     val socialLoginKakao = R.drawable.icon_social_login_kakao
+    val socialLoginNaver = R.drawable.icon_social_login_naver
+    val socialLoginGoogle = R.drawable.icon_social_login_google
 }

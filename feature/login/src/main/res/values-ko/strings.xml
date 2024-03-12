@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="main_logo">메인로고</string>
+    <string name="icon">아이콘</string>
+    <string name="business_or_admin_sign_up">비즈니스/관리자 회원가입 ></string>
+    <string name="email_login">이메일 로그인</string>
+</resources>

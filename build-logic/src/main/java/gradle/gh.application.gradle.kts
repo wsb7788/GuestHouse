@@ -1,5 +1,6 @@
 import extention.getApiKey
 import plugin.configureAndroid
+import plugin.configureCompose
 import plugin.configureHilt
 import plugin.configureSocialLogin
 
@@ -16,3 +17,4 @@ android {
 configureAndroid()
 configureHilt()
 configureSocialLogin()
+configureCompose()
