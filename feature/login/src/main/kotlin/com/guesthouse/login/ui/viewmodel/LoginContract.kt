@@ -8,7 +8,7 @@ interface LoginContract : BaseContract<LoginContract.State, LoginContract.Event,
     )
 
     sealed interface Event {
-        data object OnKaKaoLoginClicked : Event
+        data object OnKakaoLoginClicked : Event
     }
 
     sealed interface Effect {

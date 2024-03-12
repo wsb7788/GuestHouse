@@ -18,19 +18,19 @@ fun NavGraphBuilder.loginGraph(
     ) {
         composable(route = GhRoute.LOGIN.name) {
             LoginRoute(
-                onEmailLoginClick = navController::navigateToEmail
+                onEmailLoginClick = {
+                    navController.navigate(GhRoute.EMAIL.name)
+                }
             )
         }
 
         composable(route = GhRoute.EMAIL.name) {
             EmailRoute(
-                onBackClick = navController::popBackStack
+                onBackClick = {
+                    navController.popBackStack()
+                }
             )
         }
 
     }
-}
-
-fun NavController.navigateToEmail() {
-    navigate(GhRoute.EMAIL.name)
 }
