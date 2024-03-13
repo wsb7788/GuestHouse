@@ -1,23 +1,24 @@
 package com.guesthouse.login.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,51 +27,76 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.guesthouse.designsystem.component.GHButton
+import com.guesthouse.designsystem.component.GHImageButton
+import com.guesthouse.designsystem.component.GHOutLinedTextField
 import com.guesthouse.designsystem.icon.GuestHouseIcons
+import com.guesthouse.designsystem.theme.Gray70
+import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.login.R
 
 @Composable
 fun EmailScreen(
-    onBackClick: () -> Unit,
+    onBackClick: () -> Unit = {},
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize()
+    Scaffold(
+        topBar = {
+            CloseScreenButton(onBackClick)
+        }
     ) {
-        CloseScreen(onBackClick)
-        EmailLogin()
-        LoginIdInput()
-        LoginPwInput()
-        LoginButton()
-        LoginSubFunction()
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .padding(horizontal = 24.dp),
+        ) {
+            Spacer(modifier = Modifier.height(24.dp))
+            EmailLoginText()
+            Spacer(modifier = Modifier.height(29.dp))
+            LoginIdInput()
+            Spacer(modifier = Modifier.height(16.dp))
+            LoginPwInput()
+            Spacer(modifier = Modifier.height(30.dp))
+            LoginButton()
+            Spacer(modifier = Modifier.height(12.dp))
+            LoginSubFunction()
+        }
     }
+
 }
 
 @Composable
-fun CloseScreen(onBackClick: () -> Unit) {
+fun CloseScreenButton(onBackClick: () -> Unit) {
     IconButton(
         onClick = {
             onBackClick()
-    }) {
+        }) {
         Icon(
             modifier = Modifier
                 .padding(top = 14.dp)
                 .size(24.dp),
             imageVector = Icons.Default.Close,
-            contentDescription = stringResource(id = R.string.close_button))
+            contentDescription = stringResource(id = R.string.close_button)
+        )
     }
 }
 
 @Composable
-fun EmailLogin() {
+fun EmailLoginText() {
     Text(
-        modifier = Modifier.padding(top = 40.dp, start = 24.dp),
         text = stringResource(id = R.string.email_login),
+        fontFamily = pretendard,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     )
@@ -79,86 +105,111 @@ fun EmailLogin() {
 @Composable
 fun LoginIdInput() {
     var text by remember { mutableStateOf("") }
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 24.dp, end = 24.dp, top = 29.dp),
+    GHOutLinedTextField(
         value = text,
         onValueChange = { text = it },
-        prefix = {
+        hint = stringResource(id = R.string.email_hint),
+        leadingIcon = {
             Image(
-                painter = painterResource(id = GuestHouseIcons.emailDefault),
-                contentDescription = null,
-                modifier = Modifier.size(18.dp)
+                painter = painterResource(
+                    id =
+                    if (text.isNotEmpty()) {
+                        com.guesthouse.designsystem.R.drawable.icon_email_entered
+                    } else {
+                        com.guesthouse.designsystem.R.drawable.icon_email_default
+                    }
+                ),
+                contentDescription = stringResource(R.string.email_text_input_area)
             )
         },
-        placeholder = {
-            Text(
-                fontSize = 12.sp,
-                color = Color(0xFFD4D4D4),
-                text = "이메일",
-                modifier = Modifier.padding(start = 8.dp)
-            )
+        trailingIcon = {
+            if (text.isNotEmpty()) {
+                GHImageButton(
+                    containerModifier = Modifier
+                        .clip(CircleShape)
+                        .size(18.dp)
+                        .background(Gray70),
+                    imageModifier = Modifier.size(6.75.dp),
+                    imageColorFilter = ColorFilter.tint(Color.White),
+                    onClick = { text = "" },
+                    imageResId = com.guesthouse.designsystem.R.drawable.icon_cancel,
+                    imageDescriptionResId = R.string.email_text_input_area_clear_button
+                )
+            }
         },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Email,
+            imeAction = ImeAction.Next
+        ),
+        singleLine = true
     )
 }
 
 @Composable
 fun LoginPwInput() {
     var text by remember { mutableStateOf("") }
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 24.dp, end = 24.dp, top = 16.dp),
+    var passwordVisibility by remember { mutableStateOf(false) }
+    GHOutLinedTextField(
         value = text,
         onValueChange = { text = it },
-        prefix = {
+        hint = stringResource(id = R.string.password_hint),
+        leadingIcon = {
             Image(
-                painter = painterResource(id = GuestHouseIcons.passwordDefault),
-                contentDescription = null,
-                modifier = Modifier.size(18.dp)
+                painter = painterResource(
+                    id =
+                    if (text.isNotEmpty()) {
+                        GuestHouseIcons.passwordEntered
+                    } else {
+                        GuestHouseIcons.passwordDefault
+                    }
+                ),
+                contentDescription = stringResource(R.string.password_text_input_area)
             )
         },
-        placeholder = {
-            Text(
-                fontSize = 12.sp,
-                color = Color(0xFFD4D4D4),
-                text = "비밀번호",
-                modifier = Modifier.padding(start = 8.dp)
-            )
+        visualTransformation = if (passwordVisibility) {
+            VisualTransformation.None
+        } else {
+            PasswordVisualTransformation()
         },
+        trailingIcon = {
+            if (text.isNotEmpty()) {
+                GHImageButton(
+                    imageModifier = Modifier.size(18.dp),
+                    imageColorFilter = ColorFilter.tint(Gray70),
+                    onClick = {
+                        passwordVisibility = !passwordVisibility
+                              },
+                    imageResId =
+                    if (passwordVisibility)
+                        GuestHouseIcons.visible
+                    else
+                        GuestHouseIcons.invisible,
+                    imageDescriptionResId = R.string.password_visibility_toggle_button
+                )
+            }
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password,
+            imeAction = ImeAction.Done
+        ),
+        singleLine = true
     )
 }
 
 @Composable
 fun LoginButton() {
-    Button(
-        onClick = { /*TODO*/ },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 24.dp, end = 24.dp, top = 30.dp),
-        shape = RoundedCornerShape(12.dp),
-        contentPadding = PaddingValues(0.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4D4D4))
-        ) {
-        Text(
-            text = "로그인",
-            modifier = Modifier.padding(vertical = 14.dp),
-            fontWeight = FontWeight.Bold
-        )
-    }
+    GHButton(onClick = { /*TODO*/ }, text = stringResource(R.string.email_login_button_text))
 }
 
 @Composable
 fun LoginSubFunction() {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 24.dp, end = 24.dp, top = 12.dp),
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         EmailRememberCheckBox()
-        Spacer(modifier = Modifier.weight(1f))
         PassWordSearch()
     }
 }
@@ -167,25 +218,32 @@ fun LoginSubFunction() {
 private fun EmailRememberCheckBox() {
     var isChecked by remember { mutableStateOf(false) }
 
-    Checkbox(
-        checked = isChecked,
-        onCheckedChange = {
-            isChecked = !isChecked
-        },
-        modifier = Modifier
-            .padding(end = 8.dp)
-            .size(16.dp),
-    )
-    Text(
-        text = "이메일 기억하기",
-        fontSize = 12.sp,
-    )
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Checkbox(
+            checked = isChecked,
+            onCheckedChange = {
+                isChecked = !isChecked
+            },
+            modifier = Modifier
+                .size(16.dp),
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = stringResource(R.string.remember_email),
+            fontFamily = pretendard,
+            fontSize = 12.sp,
+        )
+    }
+    
 }
 
 @Composable
 fun PassWordSearch() {
     Text(
-        text = "비밀번호 찾기",
+        text = stringResource(R.string.find_my_password),
+        fontFamily = pretendard,
         fontSize = 12.sp,
     )
 }

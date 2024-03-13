@@ -12,4 +12,13 @@
     <string name="email_login">이메일 로그인</string>
     <string name="close_button">닫기 버튼</string>
     <string name="business_admin_sign_up">비즈니스 / 관리자 회원가입</string>
+    <string name="email_text_input_area">이메일 입력 영역</string>
+    <string name="password_text_input_area">비밀번호 입력 영역</string>
+    <string name="email_hint">이메일</string>
+    <string name="password_hint">비밀번호</string>
+    <string name="email_text_input_area_clear_button">이메일 영역 모두 지우기 버튼</string>
+    <string name="password_visibility_toggle_button">비밀번호 확인 토글 버튼</string>
+    <string name="email_login_button_text">로그인</string>
+    <string name="remember_email">이메일 기억하기</string>
+    <string name="find_my_password">비밀번호 찾기</string>
 </resources>

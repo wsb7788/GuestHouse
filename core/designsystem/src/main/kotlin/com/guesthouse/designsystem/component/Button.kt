@@ -15,7 +15,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -24,9 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.guesthouse.designsystem.theme.Gray70
-import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.designsystem.theme.Primary
 import com.guesthouse.designsystem.theme.White70
+import com.guesthouse.designsystem.theme.pretendard
+
 
 @Composable
 fun GHButton(
@@ -137,12 +137,12 @@ fun GHImageButton(
 
 @Preview(group = "GHButton", apiLevel = 33)
 @Composable
-fun GHButtonPreview() {
+private fun GHButtonPreview() {
     GHButton(onClick = { }, text = "로그인")
 }
 
 @Preview(group = "GHButton", apiLevel = 33)
 @Composable
-fun GHButtonDisabledPreview() {
+private fun GHButtonDisabledPreview() {
     GHButton(onClick = { }, text = "로그인", enabled = false)
 }

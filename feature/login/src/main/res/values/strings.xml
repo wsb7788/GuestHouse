@@ -12,4 +12,13 @@
     <string name="email_login">emailLogin</string>
     <string name="close_button">closeButton</string>
     <string name="business_admin_sign_up">Business / Admin SignUp</string>
+    <string name="email_text_input_area">Email Text Input Area</string>
+    <string name="password_text_input_area">Password Text Input Area</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="email_text_input_area_clear_button">Email Text Input Area Clear Button</string>
+    <string name="password_visibility_toggle_button">Password Visibility Toggle Button</string>
+    <string name="email_login_button_text">Login</string>
+    <string name="remember_email">Remember Email</string>
+    <string name="find_my_password">Find My Password</string>
 </resources>
