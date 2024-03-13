@@ -46,11 +46,15 @@ import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.Gray70
 import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.login.R
+import com.guesthouse.login.ui.viewmodel.LoginContract
 
 @Composable
 fun EmailScreen(
     onBackClick: () -> Unit = {},
+    event: (LoginContract.Event) -> Unit,
+    state: LoginContract.State,
 ) {
+
     Scaffold(
         topBar = {
             CloseScreenButton(onBackClick)
@@ -64,17 +68,33 @@ fun EmailScreen(
             Spacer(modifier = Modifier.height(24.dp))
             EmailLoginText()
             Spacer(modifier = Modifier.height(29.dp))
-            LoginIdInput()
+            LoginIdInput(
+                email = state.email,
+                onEmailChanged = { email ->
+                    event(LoginContract.Event.OnEmailChanged(email))
+                }
+            )
             Spacer(modifier = Modifier.height(16.dp))
-            LoginPwInput()
+            LoginPwInput(
+                password = state.password,
+                onPasswordChanged = { password ->
+                    event(LoginContract.Event.OnPasswordChanged(password))
+                }
+            )
             Spacer(modifier = Modifier.height(30.dp))
-            LoginButton()
+            LoginButton(
+                enabled = state.email.isNotEmpty() && state.password.isNotEmpty(),
+                onClick = {
+                    event(LoginContract.Event.OnLoginButtonClicked)
+                }
+            )
             Spacer(modifier = Modifier.height(12.dp))
             LoginSubFunction()
         }
     }
 
 }
+
 
 @Composable
 fun CloseScreenButton(onBackClick: () -> Unit) {
@@ -103,17 +123,16 @@ fun EmailLoginText() {
 }
 
 @Composable
-fun LoginIdInput() {
-    var text by remember { mutableStateOf("") }
+fun LoginIdInput(email: String, onEmailChanged: (String) -> Unit) {
     GHOutLinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = email,
+        onValueChange = { onEmailChanged(it) },
         hint = stringResource(id = R.string.email_hint),
         leadingIcon = {
             Image(
                 painter = painterResource(
                     id =
-                    if (text.isNotEmpty()) {
+                    if (email.isNotEmpty()) {
                         com.guesthouse.designsystem.R.drawable.icon_email_entered
                     } else {
                         com.guesthouse.designsystem.R.drawable.icon_email_default
@@ -123,7 +142,7 @@ fun LoginIdInput() {
             )
         },
         trailingIcon = {
-            if (text.isNotEmpty()) {
+            if (email.isNotEmpty()) {
                 GHImageButton(
                     containerModifier = Modifier
                         .clip(CircleShape)
@@ -131,7 +150,7 @@ fun LoginIdInput() {
                         .background(Gray70),
                     imageModifier = Modifier.size(6.75.dp),
                     imageColorFilter = ColorFilter.tint(Color.White),
-                    onClick = { text = "" },
+                    onClick = { onEmailChanged("") },
                     imageResId = com.guesthouse.designsystem.R.drawable.icon_cancel,
                     imageDescriptionResId = R.string.email_text_input_area_clear_button
                 )
@@ -146,18 +165,17 @@ fun LoginIdInput() {
 }
 
 @Composable
-fun LoginPwInput() {
-    var text by remember { mutableStateOf("") }
+fun LoginPwInput(password: String, onPasswordChanged: (String) -> Unit) {
     var passwordVisibility by remember { mutableStateOf(false) }
     GHOutLinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = password,
+        onValueChange = { onPasswordChanged(it) },
         hint = stringResource(id = R.string.password_hint),
         leadingIcon = {
             Image(
                 painter = painterResource(
                     id =
-                    if (text.isNotEmpty()) {
+                    if (password.isNotEmpty()) {
                         GuestHouseIcons.passwordEntered
                     } else {
                         GuestHouseIcons.passwordDefault
@@ -172,13 +190,13 @@ fun LoginPwInput() {
             PasswordVisualTransformation()
         },
         trailingIcon = {
-            if (text.isNotEmpty()) {
+            if (password.isNotEmpty()) {
                 GHImageButton(
                     imageModifier = Modifier.size(18.dp),
                     imageColorFilter = ColorFilter.tint(Gray70),
                     onClick = {
                         passwordVisibility = !passwordVisibility
-                              },
+                    },
                     imageResId =
                     if (passwordVisibility)
                         GuestHouseIcons.visible
@@ -197,8 +215,12 @@ fun LoginPwInput() {
 }
 
 @Composable
-fun LoginButton() {
-    GHButton(onClick = { /*TODO*/ }, text = stringResource(R.string.email_login_button_text))
+fun LoginButton(enabled: Boolean, onClick: () -> Unit) {
+    GHButton(
+        enabled = enabled,
+        onClick = { onClick() },
+        text = stringResource(R.string.email_login_button_text)
+    )
 }
 
 @Composable
@@ -220,7 +242,7 @@ private fun EmailRememberCheckBox() {
 
     Row(
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         Checkbox(
             checked = isChecked,
             onCheckedChange = {
@@ -236,7 +258,7 @@ private fun EmailRememberCheckBox() {
             fontSize = 12.sp,
         )
     }
-    
+
 }
 
 @Composable
