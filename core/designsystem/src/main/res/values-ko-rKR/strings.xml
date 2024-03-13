@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email_text_input_area">이메일 입력 영역</string>
+    <string name="password_text_input_area">비밀번호 입력 영역</string>
+    <string name="email_hint">이메일</string>
+    <string name="password_hint">비밀번호</string>
+    <string name="email_text_input_area_clear_button">이메일 영역 모두 지우기 버튼</string>
+    <string name="password_visibility_toggle_button">비밀번호 확인 토글 버튼</string>
+</resources>

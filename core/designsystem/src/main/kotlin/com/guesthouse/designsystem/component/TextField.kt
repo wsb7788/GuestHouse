@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -79,7 +80,7 @@ fun GHEOutLinedEmailField(
                         R.drawable.icon_email_default
                     }
                 ),
-                contentDescription = ""
+                contentDescription = stringResource(R.string.email_text_input_area)
             )
         },
         trailingIcon = {
@@ -93,7 +94,7 @@ fun GHEOutLinedEmailField(
                     imageColorFilter = ColorFilter.tint(Color.White),
                     onClick = { onValueChange("") },
                     imageResId = R.drawable.icon_cancel,
-                    imageDescriptionResId = R.string.email_text_input_area
+                    imageDescriptionResId = R.string.email_text_input_area_clear_button
                 )
             }
         },
@@ -133,7 +134,7 @@ fun GHOutLinedPasswordField(
         placeholder = {
             if(value.isEmpty()) {
                 Text(
-                    text = "비밀번호",
+                    text = stringResource(R.string.password_hint),
                     fontFamily = pretendard,
                     fontSize = 12.sp,
                     color = Gray70,
@@ -150,7 +151,7 @@ fun GHOutLinedPasswordField(
                         R.drawable.icon_password_default
                     }
                 ),
-                contentDescription = ""
+                contentDescription = stringResource(R.string.password_text_input_area)
             )
         },
         visualTransformation = if(passwordVisibility){
@@ -165,7 +166,7 @@ fun GHOutLinedPasswordField(
                     imageColorFilter = ColorFilter.tint(Gray70),
                     onClick = { passwordVisibility = !passwordVisibility },
                     imageResId = if(passwordVisibility) R.drawable.icon_visible else R.drawable.icon_invisible,
-                    imageDescriptionResId = R.string.email_text_input_area
+                    imageDescriptionResId = R.string.password_visibility_toggle_button
                 )
             }
         },
@@ -191,8 +192,8 @@ fun GHEOutLinedEmailFieldPreview() {
 @Composable
 fun GHEOutLinedPasswordFieldPreview() {
     GuestHouseTheme {
-        GHEOutLinedPasswordField(
-            value = "asdf",
+        GHOutLinedPasswordField(
+            value = "",
             onValueChange = {},
         )
     }
