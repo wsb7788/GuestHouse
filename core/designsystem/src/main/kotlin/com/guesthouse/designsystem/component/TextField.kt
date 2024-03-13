@@ -4,24 +4,22 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -38,17 +36,11 @@ import com.guesthouse.designsystem.theme.Primary
 import com.guesthouse.designsystem.theme.pretendard
 
 @Composable
-fun GHTextField() {
-
-}
-
-@Composable
 fun GHEOutLinedEmailField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     enabled: Boolean = true,
-    hint: String = "",
 ) {
 
     OutlinedTextField(
@@ -67,7 +59,15 @@ fun GHEOutLinedEmailField(
             fontFamily = pretendard,
             fontSize = 12.sp,
         ),
-        placeholder = { if(value.isEmpty()) {Text(text = hint, fontFamily = pretendard, fontSize = 12.sp, color = Gray70, lineHeight = 12.sp) }},
+        placeholder = {
+            if(value.isEmpty()) {
+                Text(
+                    text = "이메일",
+                    fontFamily = pretendard,
+                    fontSize = 12.sp,
+                    color = Gray70,
+                    lineHeight = 12.sp
+                ) }},
         singleLine = true,
         leadingIcon = {
             Image(
@@ -104,6 +104,78 @@ fun GHEOutLinedEmailField(
     )
 }
 
+@Composable
+fun GHOutLinedPasswordField(
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    enabled: Boolean = true,
+) {
+
+    var passwordVisibility by remember { mutableStateOf(false) }
+
+    OutlinedTextField(
+        modifier = modifier
+            .height(46.dp)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(12.dp),
+        colors = OutlinedTextFieldDefaults.colors(
+            unfocusedBorderColor = Gray70,
+            focusedBorderColor = Primary,
+        ),
+        value = value,
+        onValueChange = onValueChange,
+        enabled = enabled,
+        textStyle = TextStyle(
+            fontFamily = pretendard,
+            fontSize = 12.sp,
+        ),
+        placeholder = {
+            if(value.isEmpty()) {
+                Text(
+                    text = "비밀번호",
+                    fontFamily = pretendard,
+                    fontSize = 12.sp,
+                    color = Gray70,
+                    lineHeight = 12.sp
+                ) }},
+        singleLine = true,
+        leadingIcon = {
+            Image(
+                painter = painterResource(
+                    id =
+                    if (value.isNotEmpty()) {
+                        R.drawable.icon_password_entered
+                    } else {
+                        R.drawable.icon_password_default
+                    }
+                ),
+                contentDescription = ""
+            )
+        },
+        visualTransformation = if(passwordVisibility){
+            VisualTransformation.None
+        } else {
+            PasswordVisualTransformation()
+        },
+        trailingIcon = {
+            if (value.isNotEmpty()) {
+                GHImageButton(
+                    imageModifier = Modifier.size(18.dp),
+                    imageColorFilter = ColorFilter.tint(Gray70),
+                    onClick = { passwordVisibility = !passwordVisibility },
+                    imageResId = if(passwordVisibility) R.drawable.icon_visible else R.drawable.icon_invisible,
+                    imageDescriptionResId = R.string.email_text_input_area
+                )
+            }
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password,
+            imeAction = ImeAction.Done
+        )
+    )
+}
+
 @Preview(apiLevel = 33)
 @Composable
 fun GHEOutLinedEmailFieldPreview() {
@@ -111,7 +183,17 @@ fun GHEOutLinedEmailFieldPreview() {
         GHEOutLinedEmailField(
             value = "",
             onValueChange = {},
-            hint = "zzxdlkfjas"
+        )
+    }
+}
+
+@Preview(apiLevel = 33)
+@Composable
+fun GHEOutLinedPasswordFieldPreview() {
+    GuestHouseTheme {
+        GHEOutLinedPasswordField(
+            value = "asdf",
+            onValueChange = {},
         )
     }
 }
