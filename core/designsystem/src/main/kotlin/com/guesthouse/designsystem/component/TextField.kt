@@ -2,15 +2,20 @@ package com.guesthouse.designsystem.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -35,6 +41,73 @@ import com.guesthouse.designsystem.theme.Gray70
 import com.guesthouse.designsystem.theme.GuestHouseTheme
 import com.guesthouse.designsystem.theme.Primary
 import com.guesthouse.designsystem.theme.pretendard
+
+@Composable
+fun GHOutLinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    label: @Composable (() -> Unit)? = null,
+    hint: String? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    prefix: @Composable (() -> Unit)? = null,
+    suffix: @Composable (() -> Unit)? = null,
+    supportingText: @Composable (() -> Unit)? = null,
+    isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    singleLine: Boolean = false,
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
+    minLines: Int = 1,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+) {
+    OutlinedTextField(
+        modifier = modifier
+            .height(46.dp)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(12.dp),
+        colors = OutlinedTextFieldDefaults.colors(
+            unfocusedBorderColor = Gray70,
+            focusedBorderColor = Primary,
+        ),
+        textStyle = TextStyle(
+            fontFamily = pretendard,
+            fontSize = 12.sp,
+        ),
+        placeholder = {
+            if (value.isEmpty() && hint != null) {
+                Text(
+                    text = hint,
+                    fontFamily = pretendard,
+                    fontSize = 12.sp,
+                    color = Gray70,
+                    lineHeight = 12.sp
+                )
+            }
+        },
+        value = value,
+        onValueChange = onValueChange,
+        enabled = enabled,
+        readOnly = readOnly,
+        label = label,
+        leadingIcon = leadingIcon,
+        trailingIcon = trailingIcon,
+        prefix = prefix,
+        suffix = suffix,
+        supportingText = supportingText,
+        isError = isError,
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        maxLines = maxLines,
+        minLines = minLines,
+        interactionSource = interactionSource
+    )
+}
 
 @Composable
 fun GHEOutLinedEmailField(
@@ -61,14 +134,16 @@ fun GHEOutLinedEmailField(
             fontSize = 12.sp,
         ),
         placeholder = {
-            if(value.isEmpty()) {
+            if (value.isEmpty()) {
                 Text(
                     text = "이메일",
                     fontFamily = pretendard,
                     fontSize = 12.sp,
                     color = Gray70,
                     lineHeight = 12.sp
-                ) }},
+                )
+            }
+        },
         singleLine = true,
         leadingIcon = {
             Image(
@@ -132,14 +207,16 @@ fun GHOutLinedPasswordField(
             fontSize = 12.sp,
         ),
         placeholder = {
-            if(value.isEmpty()) {
+            if (value.isEmpty()) {
                 Text(
                     text = stringResource(R.string.password_hint),
                     fontFamily = pretendard,
                     fontSize = 12.sp,
                     color = Gray70,
                     lineHeight = 12.sp
-                ) }},
+                )
+            }
+        },
         singleLine = true,
         leadingIcon = {
             Image(
@@ -154,7 +231,7 @@ fun GHOutLinedPasswordField(
                 contentDescription = stringResource(R.string.password_text_input_area)
             )
         },
-        visualTransformation = if(passwordVisibility){
+        visualTransformation = if (passwordVisibility) {
             VisualTransformation.None
         } else {
             PasswordVisualTransformation()
@@ -165,7 +242,7 @@ fun GHOutLinedPasswordField(
                     imageModifier = Modifier.size(18.dp),
                     imageColorFilter = ColorFilter.tint(Gray70),
                     onClick = { passwordVisibility = !passwordVisibility },
-                    imageResId = if(passwordVisibility) R.drawable.icon_visible else R.drawable.icon_invisible,
+                    imageResId = if (passwordVisibility) R.drawable.icon_visible else R.drawable.icon_invisible,
                     imageDescriptionResId = R.string.password_visibility_toggle_button
                 )
             }
@@ -176,6 +253,7 @@ fun GHOutLinedPasswordField(
         )
     )
 }
+
 
 @Preview(apiLevel = 33)
 @Composable
@@ -190,7 +268,7 @@ fun GHEOutLinedEmailFieldPreview() {
 
 @Preview(apiLevel = 33)
 @Composable
-fun GHEOutLinedPasswordFieldPreview() {
+fun GHOutLinedPasswordFieldPreview() {
     GuestHouseTheme {
         GHOutLinedPasswordField(
             value = "",
@@ -198,4 +276,16 @@ fun GHEOutLinedPasswordFieldPreview() {
         )
     }
 }
+
+@Preview(apiLevel = 33)
+@Composable
+fun GHTextFieldPreview() {
+    GuestHouseTheme {
+        GHOutLinedTextField(
+            value = "",
+            onValueChange = {},
+        )
+    }
+}
+
 
