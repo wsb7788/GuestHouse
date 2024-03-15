@@ -21,4 +21,6 @@
     <string name="email_login_button_text">Login</string>
     <string name="remember_email">Remember Email</string>
     <string name="find_my_password">Find My Password</string>
+    <string name="sign_up_guest_house_message">If you are not Guest House member?</string>
+    <string name="sign_up_with_email">SignUp with email</string>
 </resources>

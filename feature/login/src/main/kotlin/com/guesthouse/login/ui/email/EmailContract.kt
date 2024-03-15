@@ -15,6 +15,8 @@ interface EmailContract
     sealed interface Event {
         data object OnLoginButtonClicked : Event
         data object OnFindPasswordButtonClicked : Event
+        data object OnSignUpWithEmailButtonClicked : Event
+
         data class OnEmailChanged(val email: String): Event
         data class OnPasswordChanged(val password: String): Event
     }

@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Checkbox
@@ -25,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +50,7 @@ import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.Gray70
 import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.login.R
+import com.guesthouse.login.ui.login.LoginIcon
 
 @Composable
 fun EmailScreen(
@@ -64,6 +68,7 @@ fun EmailScreen(
             modifier = Modifier
                 .padding(it)
                 .padding(horizontal = 24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(24.dp))
             EmailLoginText()
@@ -89,12 +94,45 @@ fun EmailScreen(
                 }
             )
             Spacer(modifier = Modifier.height(12.dp))
-            LoginSubFunction {
+            LoginSubSection {
                 event(EmailContract.Event.OnFindPasswordButtonClicked)
             }
+            Spacer(modifier = Modifier.weight(1f))
+            LoginIcon(onEmailLoginClicked = { /*TODO*/ }) {
+
+            }
+            Spacer(modifier = Modifier.height(28.dp))
+            SignUpSection(
+                onSignUpWithEmailButtonClicked = {
+                    event(EmailContract.Event.OnSignUpWithEmailButtonClicked)
+                }
+            )
+            Spacer(modifier = Modifier.height(30.dp))
         }
     }
 
+}
+
+@Composable
+fun SignUpSection(onSignUpWithEmailButtonClicked: () -> Unit) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = stringResource(R.string.sign_up_guest_house_message),
+            fontFamily = pretendard,
+            fontSize = 14.sp
+        )
+        Spacer(modifier = Modifier.width(11.dp))
+        Text(
+            modifier = Modifier.clickable { onSignUpWithEmailButtonClicked() },
+            text = stringResource(R.string.sign_up_with_email),
+            fontFamily = pretendard,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
 
 
@@ -226,7 +264,7 @@ fun LoginButton(enabled: Boolean, onLoginButtonClicked: () -> Unit) {
 }
 
 @Composable
-fun LoginSubFunction(onFindPasswordButtonClicked: () -> Unit) {
+fun LoginSubSection(onFindPasswordButtonClicked: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
