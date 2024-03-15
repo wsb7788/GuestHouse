@@ -1,4 +1,4 @@
-package com.guesthouse.login.ui.route
+package com.guesthouse.login.ui.login
 
 import android.content.Context
 import android.util.Log
@@ -7,9 +7,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guesthouse.base.use
-import com.guesthouse.login.ui.screen.LoginScreen
-import com.guesthouse.login.ui.viewmodel.LoginContract
-import com.guesthouse.login.ui.viewmodel.LoginViewModel
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause

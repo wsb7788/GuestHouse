@@ -1,4 +1,4 @@
-package com.guesthouse.login.ui.screen
+package com.guesthouse.login.ui.email
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -47,13 +47,12 @@ import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.Gray70
 import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.login.R
-import com.guesthouse.login.ui.viewmodel.LoginContract
 
 @Composable
 fun EmailScreen(
     onBackClick: () -> Unit = {},
-    event: (LoginContract.Event) -> Unit,
-    state: LoginContract.State,
+    event: (EmailContract.Event) -> Unit,
+    state: EmailContract.State,
 ) {
 
     Scaffold(
@@ -72,26 +71,26 @@ fun EmailScreen(
             LoginIdInput(
                 email = state.email,
                 onEmailChanged = { email ->
-                    event(LoginContract.Event.OnEmailChanged(email))
+                    event(EmailContract.Event.OnEmailChanged(email))
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
             LoginPwInput(
                 password = state.password,
                 onPasswordChanged = { password ->
-                    event(LoginContract.Event.OnPasswordChanged(password))
+                    event(EmailContract.Event.OnPasswordChanged(password))
                 }
             )
             Spacer(modifier = Modifier.height(30.dp))
             LoginButton(
                 enabled = state.email.isNotEmpty() && state.password.isNotEmpty(),
                 onLoginButtonClicked = {
-                    event(LoginContract.Event.OnLoginButtonClicked)
+                    event(EmailContract.Event.OnLoginButtonClicked)
                 }
             )
             Spacer(modifier = Modifier.height(12.dp))
             LoginSubFunction {
-                event(LoginContract.Event.OnFindPasswordButtonClicked)
+                event(EmailContract.Event.OnFindPasswordButtonClicked)
             }
         }
     }

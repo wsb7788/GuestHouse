@@ -1,8 +1,10 @@
-package com.guesthouse.login.ui.viewmodel
+package com.guesthouse.login.ui.email
 
 import com.guesthouse.base.BaseContract
 
-interface LoginContract : BaseContract<LoginContract.State, LoginContract.Event, LoginContract.Effect> {
+interface EmailContract
+    : BaseContract<EmailContract.State, EmailContract.Event, EmailContract.Effect> {
+
     data class State(
         val isLoading: Boolean = false,
         val email: String = "",
@@ -11,15 +13,12 @@ interface LoginContract : BaseContract<LoginContract.State, LoginContract.Event,
     )
 
     sealed interface Event {
-        data object OnKakaoLoginButtonClicked : Event
         data object OnLoginButtonClicked : Event
         data object OnFindPasswordButtonClicked : Event
-
         data class OnEmailChanged(val email: String): Event
         data class OnPasswordChanged(val password: String): Event
     }
 
     sealed interface Effect {
-        data object KakaoLogin : Effect
     }
 }

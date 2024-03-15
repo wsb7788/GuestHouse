@@ -1,4 +1,4 @@
-package com.guesthouse.login.ui.screen
+package com.guesthouse.login.ui.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.login.R
-import com.guesthouse.login.ui.viewmodel.LoginContract
 
 @Composable
 fun LoginScreen(

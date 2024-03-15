@@ -1,4 +1,4 @@
-package com.guesthouse.login.ui.viewmodel
+package com.guesthouse.login.ui.login
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -27,35 +27,6 @@ class LoginViewModel @Inject constructor(
 
     override fun event(event: LoginContract.Event) = when(event) {
         LoginContract.Event.OnKakaoLoginButtonClicked -> onKaKaoLoginClicked()
-        LoginContract.Event.OnLoginButtonClicked -> {
-            Log.d("TAG", "event: ${state.value}")
-            Unit
-        }
-        LoginContract.Event.OnFindPasswordButtonClicked -> {
-            onFindPasswordButtonClicked()
-        }
-        is LoginContract.Event.OnEmailChanged -> onEmailChanged(email = event.email)
-        is LoginContract.Event.OnPasswordChanged -> onPasswordChanged(password = event.password)
-    }
-
-    private fun onFindPasswordButtonClicked() {
-
-    }
-
-    private fun onPasswordChanged(password: String) {
-        _state.update {
-            it.copy(
-                password = password
-            )
-        }
-    }
-
-    private fun onEmailChanged(email: String) {
-        _state.update {
-            it.copy(
-                email = email
-            )
-        }
     }
 
     private fun onKaKaoLoginClicked() {
