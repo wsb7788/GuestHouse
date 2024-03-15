@@ -2,6 +2,7 @@ package com.guesthouse.login.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -84,12 +85,14 @@ fun EmailScreen(
             Spacer(modifier = Modifier.height(30.dp))
             LoginButton(
                 enabled = state.email.isNotEmpty() && state.password.isNotEmpty(),
-                onClick = {
+                onLoginButtonClicked = {
                     event(LoginContract.Event.OnLoginButtonClicked)
                 }
             )
             Spacer(modifier = Modifier.height(12.dp))
-            LoginSubFunction()
+            LoginSubFunction {
+                event(LoginContract.Event.OnFindPasswordButtonClicked)
+            }
         }
     }
 
@@ -215,16 +218,16 @@ fun LoginPwInput(password: String, onPasswordChanged: (String) -> Unit) {
 }
 
 @Composable
-fun LoginButton(enabled: Boolean, onClick: () -> Unit) {
+fun LoginButton(enabled: Boolean, onLoginButtonClicked: () -> Unit) {
     GHButton(
         enabled = enabled,
-        onClick = { onClick() },
+        onClick = { onLoginButtonClicked() },
         text = stringResource(R.string.email_login_button_text)
     )
 }
 
 @Composable
-fun LoginSubFunction() {
+fun LoginSubFunction(onFindPasswordButtonClicked: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -232,7 +235,7 @@ fun LoginSubFunction() {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         EmailRememberCheckBox()
-        PassWordSearch()
+        PassWordSearch(onFindPasswordButtonClicked = onFindPasswordButtonClicked)
     }
 }
 
@@ -262,8 +265,9 @@ private fun EmailRememberCheckBox() {
 }
 
 @Composable
-fun PassWordSearch() {
+fun PassWordSearch(onFindPasswordButtonClicked: () -> Unit) {
     Text(
+        modifier = Modifier.clickable { onFindPasswordButtonClicked() },
         text = stringResource(R.string.find_my_password),
         fontFamily = pretendard,
         fontSize = 12.sp,

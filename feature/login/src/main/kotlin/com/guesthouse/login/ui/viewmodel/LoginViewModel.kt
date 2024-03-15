@@ -26,13 +26,20 @@ class LoginViewModel @Inject constructor(
     override val effect: SharedFlow<LoginContract.Effect> = _effect.asSharedFlow()
 
     override fun event(event: LoginContract.Event) = when(event) {
-        LoginContract.Event.OnKakaoLoginClicked -> onKaKaoLoginClicked()
+        LoginContract.Event.OnKakaoLoginButtonClicked -> onKaKaoLoginClicked()
         LoginContract.Event.OnLoginButtonClicked -> {
             Log.d("TAG", "event: ${state.value}")
             Unit
         }
+        LoginContract.Event.OnFindPasswordButtonClicked -> {
+            onFindPasswordButtonClicked()
+        }
         is LoginContract.Event.OnEmailChanged -> onEmailChanged(email = event.email)
         is LoginContract.Event.OnPasswordChanged -> onPasswordChanged(password = event.password)
+    }
+
+    private fun onFindPasswordButtonClicked() {
+
     }
 
     private fun onPasswordChanged(password: String) {

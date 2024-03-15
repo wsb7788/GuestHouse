@@ -11,8 +11,10 @@ interface LoginContract : BaseContract<LoginContract.State, LoginContract.Event,
     )
 
     sealed interface Event {
-        data object OnKakaoLoginClicked : Event
+        data object OnKakaoLoginButtonClicked : Event
         data object OnLoginButtonClicked : Event
+        data object OnFindPasswordButtonClicked : Event
+
         data class OnEmailChanged(val email: String): Event
         data class OnPasswordChanged(val password: String): Event
     }

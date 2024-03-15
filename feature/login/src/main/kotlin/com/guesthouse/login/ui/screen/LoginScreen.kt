@@ -40,7 +40,7 @@ fun LoginScreen(
         LoginIcon (
             onEmailLoginClicked = onEmailLoginClick,
             onKakaoLoginClicked = {
-                event(LoginContract.Event.OnKakaoLoginClicked)
+                event(LoginContract.Event.OnKakaoLoginButtonClicked)
             }
         )
     }
