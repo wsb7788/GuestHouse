@@ -9,7 +9,7 @@
     <string name="email_login_button">Email login button</string>
     <string name="main_logo">mainLogo</string>
     <string name="icon">icon</string>
-    <string name="email_login">emailLogin</string>
+    <string name="email_login">Email Login</string>
     <string name="close_button">closeButton</string>
     <string name="business_admin_sign_up">Business / Admin SignUp</string>
     <string name="email_text_input_area">Email Text Input Area</string>

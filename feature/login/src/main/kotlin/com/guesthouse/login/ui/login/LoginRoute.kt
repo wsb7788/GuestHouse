@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.guesthouse.base.use
 import com.kakao.sdk.auth.model.OAuthToken
@@ -13,10 +14,11 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.flow.collectLatest
 
+@Preview(apiLevel = 33)
 @Composable
 fun LoginRoute(
     viewModel: LoginViewModel = hiltViewModel(),
-    onEmailLoginClick:() -> Unit
+    onEmailLoginClick:() -> Unit = {},
 ) {
     val context = LocalContext.current
     val (state, event, effect) = use(viewModel)

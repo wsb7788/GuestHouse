@@ -27,7 +27,6 @@ import com.guesthouse.designsystem.theme.Primary
 import com.guesthouse.designsystem.theme.White70
 import com.guesthouse.designsystem.theme.pretendard
 
-
 @Composable
 fun GHButton(
     modifier: Modifier = Modifier,
