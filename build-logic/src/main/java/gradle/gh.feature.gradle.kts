@@ -4,6 +4,7 @@ import plugin.configureCompose
 import plugin.configureFeature
 import plugin.configureHilt
 import plugin.configureKotlinTest
+import plugin.configureNavigation
 
 plugins {
     id("com.android.library")
@@ -12,6 +13,7 @@ plugins {
 configureAndroid()
 configureHilt()
 configureCompose()
+configureNavigation()
 configureAndroidTest()
 configureKotlinTest()
 configureFeature()

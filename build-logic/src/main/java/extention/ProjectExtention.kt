@@ -3,6 +3,7 @@ package extention
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
@@ -20,3 +21,7 @@ internal val Project.androidExtension: CommonExtension<*, *, *, *, *>
         .recoverCatching { applicationExtension }
         .onFailure { println("Could not find Library or Application extension from this project") }
         .getOrThrow()
+
+internal fun Project.getApiKey(propertyKey: String): String {
+    return gradleLocalProperties(rootDir).getProperty(propertyKey)
+}

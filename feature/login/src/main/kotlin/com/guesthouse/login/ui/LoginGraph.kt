@@ -4,8 +4,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.guesthouse.login.ui.route.EmailRoute
-import com.guesthouse.login.ui.route.LoginRoute
+import com.guesthouse.login.ui.email.EmailRoute
+import com.guesthouse.login.ui.login.LoginRoute
 import com.navigation.navigation.GhGraphRoute
 import com.navigation.navigation.GhRoute
 
@@ -18,19 +18,19 @@ fun NavGraphBuilder.loginGraph(
     ) {
         composable(route = GhRoute.LOGIN.name) {
             LoginRoute(
-                onEmailLoginClick = navController::navigateToEmail
+                onEmailLoginClick = {
+                    navController.navigate(GhRoute.EMAIL.name)
+                }
             )
         }
 
         composable(route = GhRoute.EMAIL.name) {
             EmailRoute(
-                onBackClick = navController::popBackStack
+                onBackClick = {
+                    navController.popBackStack()
+                }
             )
         }
 
     }
-}
-
-fun NavController.navigateToEmail() {
-    navigate(GhRoute.EMAIL.name)
 }
