@@ -2,7 +2,7 @@ package com.guesthouse.login.ui.login
 
 import com.guesthouse.base.BaseContract
 
-interface LoginContract
+sealed interface LoginContract
     : BaseContract<LoginContract.State, LoginContract.Event, LoginContract.Effect> {
     data class State(
         val isLoading: Boolean = false,

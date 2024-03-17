@@ -2,7 +2,7 @@ package com.guesthouse.login.ui.email
 
 import com.guesthouse.base.BaseContract
 
-interface EmailContract
+sealed interface EmailContract
     : BaseContract<EmailContract.State, EmailContract.Event, EmailContract.Effect> {
 
     data class State(
