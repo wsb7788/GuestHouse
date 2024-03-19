@@ -23,4 +23,5 @@
     <string name="find_my_password">Find My Password</string>
     <string name="sign_up_guest_house_message">If you are not Guest House member?</string>
     <string name="sign_up_with_email">SignUp with email</string>
+    <string name="agree_and_continue_sign_up_button">Agree and continue sign up</string>
 </resources>

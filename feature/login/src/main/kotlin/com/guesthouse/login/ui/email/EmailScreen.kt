@@ -7,18 +7,24 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -44,17 +50,48 @@ import com.guesthouse.designsystem.component.GHOutLinedTextField
 import com.guesthouse.designsystem.component.GHText
 import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.Neutral100
+import com.guesthouse.designsystem.theme.Neutral900A30
 import com.guesthouse.designsystem.theme.NeutralWhite
-import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.login.R
 import com.guesthouse.login.ui.login.LoginIcon
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmailScreen(
     onBackClick: () -> Unit = {},
     event: (EmailContract.Event) -> Unit,
     state: EmailContract.State,
 ) {
+    var bottomSheetShow by remember { mutableStateOf(false) }
+
+    if (bottomSheetShow) {
+        ModalBottomSheet(
+            modifier = Modifier
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            onDismissRequest = { bottomSheetShow = false },
+            scrimColor = Neutral900A30,
+            dragHandle = null,
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(
+                        bottom = WindowInsets.navigationBars
+                            .asPaddingValues()
+                            .calculateBottomPadding()
+                    )
+                    .padding(horizontal = 24.dp),
+            ) {
+                Spacer(modifier = Modifier.height(330.dp))
+                GHButton(
+                    onClick = { event(EmailContract.Event.OnSignUpContinueButtonClicked) },
+                    text = stringResource(R.string.agree_and_continue_sign_up_button)
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -101,11 +138,13 @@ fun EmailScreen(
             Spacer(modifier = Modifier.height(28.dp))
             SignUpSection(
                 onSignUpWithEmailButtonClicked = {
+                    bottomSheetShow = true
                     event(EmailContract.Event.OnSignUpWithEmailButtonClicked)
                 }
             )
             Spacer(modifier = Modifier.height(30.dp))
         }
+
     }
 
 }

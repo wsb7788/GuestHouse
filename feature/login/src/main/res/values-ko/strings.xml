@@ -23,4 +23,5 @@
     <string name="find_my_password">비밀번호 찾기</string>
     <string name="sign_up_guest_house_message">아직 게하 회원이 아니신가요?</string>
     <string name="sign_up_with_email">이메일로 가입하기</string>
+    <string name="agree_and_continue_sign_up_button">동의하고 회원가입 계속하기</string>
 </resources>
