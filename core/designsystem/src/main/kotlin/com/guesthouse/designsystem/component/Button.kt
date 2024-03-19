@@ -22,9 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.guesthouse.designsystem.theme.Gray70
+import com.guesthouse.designsystem.theme.Neutral100
+import com.guesthouse.designsystem.theme.NeutralWhite
 import com.guesthouse.designsystem.theme.Primary
-import com.guesthouse.designsystem.theme.White70
 import com.guesthouse.designsystem.theme.pretendard
 
 @Composable
@@ -44,9 +44,9 @@ fun GHButton(
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Primary,
-            contentColor = White70,
-            disabledContainerColor = Gray70,
-            disabledContentColor = White70,
+            contentColor = NeutralWhite,
+            disabledContainerColor = Neutral100,
+            disabledContentColor = NeutralWhite,
         ),
         contentPadding = contentPadding,
         content = content,

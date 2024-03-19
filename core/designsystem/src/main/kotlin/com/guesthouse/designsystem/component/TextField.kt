@@ -16,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.guesthouse.designsystem.theme.Gray70
+import com.guesthouse.designsystem.theme.Neutral100
 import com.guesthouse.designsystem.theme.Primary
 import com.guesthouse.designsystem.theme.pretendard
 
@@ -49,7 +49,7 @@ fun GHOutLinedTextField(
             .fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            unfocusedBorderColor = Gray70,
+            unfocusedBorderColor = Neutral100,
             focusedBorderColor = Primary,
         ),
         textStyle = TextStyle(
@@ -62,7 +62,7 @@ fun GHOutLinedTextField(
                     text = hint,
                     fontFamily = pretendard,
                     fontSize = 12.sp,
-                    color = Gray70,
+                    color = Neutral100,
                     lineHeight = 12.sp
                 )
             }

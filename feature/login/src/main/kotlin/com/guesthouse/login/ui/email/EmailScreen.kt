@@ -47,7 +47,8 @@ import com.guesthouse.designsystem.component.GHButton
 import com.guesthouse.designsystem.component.GHImageButton
 import com.guesthouse.designsystem.component.GHOutLinedTextField
 import com.guesthouse.designsystem.icon.GuestHouseIcons
-import com.guesthouse.designsystem.theme.Gray70
+import com.guesthouse.designsystem.theme.Neutral100
+import com.guesthouse.designsystem.theme.NeutralWhite
 import com.guesthouse.designsystem.theme.pretendard
 import com.guesthouse.login.R
 import com.guesthouse.login.ui.login.LoginIcon
@@ -187,9 +188,9 @@ fun LoginIdInput(email: String, onEmailChanged: (String) -> Unit) {
                     containerModifier = Modifier
                         .clip(CircleShape)
                         .size(18.dp)
-                        .background(Gray70),
+                        .background(Neutral100),
                     imageModifier = Modifier.size(6.75.dp),
-                    imageColorFilter = ColorFilter.tint(Color.White),
+                    imageColorFilter = ColorFilter.tint(NeutralWhite),
                     onClick = { onEmailChanged("") },
                     imageResId = com.guesthouse.designsystem.R.drawable.icon_cancel,
                     imageDescriptionResId = R.string.email_text_input_area_clear_button
@@ -233,7 +234,7 @@ fun LoginPwInput(password: String, onPasswordChanged: (String) -> Unit) {
             if (password.isNotEmpty()) {
                 GHImageButton(
                     imageModifier = Modifier.size(18.dp),
-                    imageColorFilter = ColorFilter.tint(Gray70),
+                    imageColorFilter = ColorFilter.tint(Neutral100),
                     onClick = {
                         passwordVisibility = !passwordVisibility
                     },
