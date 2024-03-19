@@ -12,27 +12,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.guesthouse.designsystem.component.GHButton
 import com.guesthouse.designsystem.component.GHImageButton
 import com.guesthouse.designsystem.component.GHOutLinedTextField
+import com.guesthouse.designsystem.component.GHText
 import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.Neutral100
 import com.guesthouse.designsystem.theme.NeutralWhite
@@ -120,16 +116,14 @@ fun SignUpSection(onSignUpWithEmailButtonClicked: () -> Unit) {
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
+        GHText(
             text = stringResource(R.string.sign_up_guest_house_message),
-            fontFamily = pretendard,
             fontSize = 14.sp
         )
         Spacer(modifier = Modifier.width(11.dp))
-        Text(
+        GHText(
             modifier = Modifier.clickable { onSignUpWithEmailButtonClicked() },
             text = stringResource(R.string.sign_up_with_email),
-            fontFamily = pretendard,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold
         )
@@ -155,9 +149,8 @@ fun CloseScreenButton(onBackClick: () -> Unit) {
 
 @Composable
 fun EmailLoginText() {
-    Text(
+    GHText(
         text = stringResource(id = R.string.email_login),
-        fontFamily = pretendard,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     )
@@ -293,9 +286,8 @@ private fun EmailRememberCheckBox() {
                 .size(16.dp),
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Text(
+        GHText(
             text = stringResource(R.string.remember_email),
-            fontFamily = pretendard,
             fontSize = 12.sp,
         )
     }
@@ -304,10 +296,9 @@ private fun EmailRememberCheckBox() {
 
 @Composable
 fun PassWordSearch(onFindPasswordButtonClicked: () -> Unit) {
-    Text(
+    GHText(
         modifier = Modifier.clickable { onFindPasswordButtonClicked() },
         text = stringResource(R.string.find_my_password),
-        fontFamily = pretendard,
         fontSize = 12.sp,
     )
 }
