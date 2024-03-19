@@ -10,9 +10,11 @@ sealed interface LoginContract
 
     sealed interface Event {
         data object OnKakaoLoginButtonClicked : Event
+        data object OnEmailLoginButtonClicked : Event
     }
 
     sealed interface Effect {
         data object KakaoLogin : Effect
+        data object EmailLogin : Effect
     }
 }

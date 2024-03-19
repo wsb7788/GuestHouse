@@ -24,11 +24,12 @@ class LoginViewModel @Inject constructor(
     override val effect: SharedFlow<LoginContract.Effect> = _effect.asSharedFlow()
 
     override fun event(event: LoginContract.Event) = when(event) {
-        LoginContract.Event.OnKakaoLoginButtonClicked -> onKaKaoLoginClicked()
+        LoginContract.Event.OnKakaoLoginButtonClicked -> emitEffect(LoginContract.Effect.KakaoLogin)
+        LoginContract.Event.OnEmailLoginButtonClicked -> emitEffect(LoginContract.Effect.EmailLogin)
     }
 
-    private fun onKaKaoLoginClicked() {
-        _effect.tryEmit(LoginContract.Effect.KakaoLogin)
+    private fun emitEffect(effect: LoginContract.Effect) {
+        _effect.tryEmit(effect)
     }
 
 }

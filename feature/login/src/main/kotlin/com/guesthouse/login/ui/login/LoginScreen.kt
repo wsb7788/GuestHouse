@@ -26,7 +26,6 @@ import com.guesthouse.login.R
 
 @Composable
 fun LoginScreen(
-    onEmailLoginClick: () -> Unit,
     state: LoginContract.State,
     event: (LoginContract.Event) -> Unit
 ) {
@@ -37,7 +36,9 @@ fun LoginScreen(
         LoginLogo()
         Spacer(modifier = Modifier.height(83.dp))
         LoginIcon (
-            onEmailLoginClicked = onEmailLoginClick,
+            onEmailLoginClicked = {
+                event(LoginContract.Event.OnEmailLoginButtonClicked)
+            },
             onKakaoLoginClicked = {
                 event(LoginContract.Event.OnKakaoLoginButtonClicked)
             }

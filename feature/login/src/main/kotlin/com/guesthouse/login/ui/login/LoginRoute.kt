@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun LoginRoute(
     viewModel: LoginViewModel = hiltViewModel(),
-    onEmailLoginClick:() -> Unit = {},
+    onEmailLoginClicked:() -> Unit = {},
 ) {
     val context = LocalContext.current
     val (state, event, effect) = use(viewModel)
@@ -27,13 +27,13 @@ fun LoginRoute(
         effect.collectLatest { effect ->
             when (effect) {
                 LoginContract.Effect.KakaoLogin -> kakaoLogin(context)
+                LoginContract.Effect.EmailLogin -> onEmailLoginClicked()
             }
         }
     }
     LoginScreen(
         state = state,
         event = event,
-        onEmailLoginClick = onEmailLoginClick
     )
 }
 
