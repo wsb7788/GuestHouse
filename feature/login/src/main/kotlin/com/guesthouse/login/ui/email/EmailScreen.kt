@@ -7,27 +7,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SheetState
-import androidx.compose.material3.SheetValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +29,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -47,57 +38,40 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.guesthouse.designsystem.component.GHBottomSheet
 import com.guesthouse.designsystem.component.GHButton
 import com.guesthouse.designsystem.component.GHImageButton
 import com.guesthouse.designsystem.component.GHOutLinedTextField
 import com.guesthouse.designsystem.component.GHText
 import com.guesthouse.designsystem.icon.GuestHouseIcons
 import com.guesthouse.designsystem.theme.Neutral100
-import com.guesthouse.designsystem.theme.Neutral900A30
 import com.guesthouse.designsystem.theme.NeutralWhite
 import com.guesthouse.login.R
 import com.guesthouse.login.ui.login.LoginIcon
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmailScreen(
     onBackClick: () -> Unit = {},
     event: (EmailContract.Event) -> Unit,
     state: EmailContract.State,
 ) {
-    var bottomSheetShow by remember { mutableStateOf(false) }
+    var bottomSheetVisible by remember { mutableStateOf(false) }
 
-    val density = LocalDensity.current
-
-    val sheetState = remember {
-        SheetState(skipPartiallyExpanded = true, density = density, initialValue = SheetValue.Expanded)
-    }
-    if (bottomSheetShow) {
-        ModalBottomSheet(
-            modifier = Modifier
-                .fillMaxWidth(),
-            sheetState = sheetState,
-            shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
-            onDismissRequest = { bottomSheetShow = false },
-            scrimColor = Neutral900A30,
-            dragHandle = null,
-        ) {
-            Column(
-                modifier = Modifier
-                    .padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding())
-                    .padding(horizontal = 24.dp),
-            ) {
-                Spacer(modifier = Modifier.height(330.dp))
-                GHButton(
-                    onClick = {
-                        bottomSheetShow = false
-                        event(EmailContract.Event.OnSignUpContinueButtonClicked)
-                              },
-                    text = stringResource(R.string.agree_and_continue_sign_up_button)
-                )
-                Spacer(modifier = Modifier.height(24.dp))
+    if (bottomSheetVisible) {
+        GHBottomSheet(
+            onDismissRequest = {
+                bottomSheetVisible = false
             }
-
+        ) {
+            Spacer(modifier = Modifier.height(330.dp))
+            GHButton(
+                onClick = {
+                    bottomSheetVisible = false
+                    event(EmailContract.Event.OnSignUpContinueButtonClicked)
+                },
+                text = stringResource(R.string.agree_and_continue_sign_up_button)
+            )
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 
@@ -146,7 +120,7 @@ fun EmailScreen(
             Spacer(modifier = Modifier.height(28.dp))
             SignUpSection(
                 onSignUpWithEmailButtonClicked = {
-                    bottomSheetShow = true
+                    bottomSheetVisible = true
                 }
             )
             Spacer(modifier = Modifier.height(30.dp))
