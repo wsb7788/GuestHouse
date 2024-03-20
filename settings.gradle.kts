@@ -1,45 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":data:model")
-
-
-include(":core:network")
-
-
-
-include(":data:datasource")
-
-
-include(":data:repository")
-
-
-include(":data")
-
-
-include(":domain:entity")
-
-
-include(":domain:repository")
-
-
-include(":domain:usecase")
-
-
-include(":domain")
-
-
-include(":core:navigation")
-
-
-
-include(":core:designsystem")
-
-
-include(":feature:login")
-
-
-include(":core:base")
-
 
 pluginManagement {
     repositories {
@@ -71,7 +31,16 @@ rootProject.name = "GuestHouse"
 include(
     ":app",
     ":feature:splash",
-    ":core:base",
+    ":feature:signup",
     ":feature:login",
-    ":core:designsystem"
-    )
+    ":core:base",
+    ":core:navigation",
+    ":core:designsystem",
+    ":core:network",
+    ":domain:entity",
+    ":domain:repository",
+    ":domain:usecase",
+    ":data:repository",
+    ":data:datasource",
+    ":data:model",
+)
