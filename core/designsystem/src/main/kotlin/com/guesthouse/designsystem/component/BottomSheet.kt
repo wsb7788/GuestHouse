@@ -33,7 +33,7 @@ fun GHBottomSheet(
     }
 
     ModalBottomSheet(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         sheetState = sheetState,
         shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
