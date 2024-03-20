@@ -5,5 +5,6 @@ enum class GhRoute(
 ) {
     LOGIN("login_route"),
     EMAIL("email_route"),
+    ACCOUNT("account_route"),
     TEST("test_route"),
 }

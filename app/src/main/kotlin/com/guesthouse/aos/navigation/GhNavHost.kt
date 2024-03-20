@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.guesthouse.login.ui.loginGraph
+import com.guesthouse.signup.ui.signUpGraph
 import com.guesthouse.splash.testGraph
 import com.navigation.navigation.GhGraphRoute
 
@@ -21,7 +22,13 @@ internal fun GhNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        loginGraph(navController = navController)
+        loginGraph(
+            navController = navController,
+            navigateToSignUp = {
+                navController.navigate(GhGraphRoute.SIGN_UP_GRAPH.name)
+            }
+        )
+        signUpGraph(navController = navController)
         testGraph()
     }
 }

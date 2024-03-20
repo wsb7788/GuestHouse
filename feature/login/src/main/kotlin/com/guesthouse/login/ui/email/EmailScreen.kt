@@ -26,6 +26,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -64,27 +67,32 @@ fun EmailScreen(
 ) {
     var bottomSheetShow by remember { mutableStateOf(false) }
 
+    val density = LocalDensity.current
+
+    val sheetState = remember {
+        SheetState(skipPartiallyExpanded = true, density = density, initialValue = SheetValue.Expanded)
+    }
     if (bottomSheetShow) {
         ModalBottomSheet(
             modifier = Modifier
                 .fillMaxWidth(),
-            shape = RoundedCornerShape(20.dp),
+            sheetState = sheetState,
+            shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
             onDismissRequest = { bottomSheetShow = false },
             scrimColor = Neutral900A30,
             dragHandle = null,
         ) {
             Column(
                 modifier = Modifier
-                    .padding(
-                        bottom = WindowInsets.navigationBars
-                            .asPaddingValues()
-                            .calculateBottomPadding()
-                    )
+                    .padding(bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding())
                     .padding(horizontal = 24.dp),
             ) {
                 Spacer(modifier = Modifier.height(330.dp))
                 GHButton(
-                    onClick = { event(EmailContract.Event.OnSignUpContinueButtonClicked) },
+                    onClick = {
+                        bottomSheetShow = false
+                        event(EmailContract.Event.OnSignUpContinueButtonClicked)
+                              },
                     text = stringResource(R.string.agree_and_continue_sign_up_button)
                 )
                 Spacer(modifier = Modifier.height(24.dp))
@@ -139,7 +147,6 @@ fun EmailScreen(
             SignUpSection(
                 onSignUpWithEmailButtonClicked = {
                     bottomSheetShow = true
-                    event(EmailContract.Event.OnSignUpWithEmailButtonClicked)
                 }
             )
             Spacer(modifier = Modifier.height(30.dp))

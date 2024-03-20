@@ -11,6 +11,7 @@ import com.navigation.navigation.GhRoute
 
 fun NavGraphBuilder.loginGraph(
     navController: NavController,
+    navigateToSignUp: () -> Unit,
 ) {
     navigation(
         startDestination = GhRoute.LOGIN.name,
@@ -28,7 +29,8 @@ fun NavGraphBuilder.loginGraph(
             EmailRoute(
                 onBackClick = {
                     navController.popBackStack()
-                }
+                },
+                navigateToSignUp = navigateToSignUp
             )
         }
 

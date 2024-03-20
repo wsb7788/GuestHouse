@@ -7,18 +7,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.guesthouse.base.use
 import kotlinx.coroutines.flow.collectLatest
 
-@Preview
 @Composable
 fun EmailRoute(
     onBackClick: () -> Unit = {},
-    viewModel: EmailViewModel = hiltViewModel()
+    viewModel: EmailViewModel = hiltViewModel(),
+    navigateToSignUp: () -> Unit
 ) {
     val (state, event, effect) = use(viewModel)
 
     LaunchedEffect(key1 = effect){
         effect.collectLatest {
             when(it){
-                else -> {}
+                EmailContract.Effect.NavigateToSignUp -> navigateToSignUp()
             }
         }
     }

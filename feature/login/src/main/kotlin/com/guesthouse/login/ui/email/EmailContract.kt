@@ -23,5 +23,6 @@ sealed interface EmailContract
     }
 
     sealed interface Effect {
+        data object NavigateToSignUp : Effect
     }
 }

@@ -35,11 +35,15 @@ class EmailViewModel @Inject constructor(
         is EmailContract.Event.OnEmailChanged -> onEmailChanged(email = event.email)
         is EmailContract.Event.OnPasswordChanged -> onPasswordChanged(password = event.password)
         EmailContract.Event.OnSignUpWithEmailButtonClicked -> onSignUpWithEmailButtonClicked()
-        EmailContract.Event.OnSignUpContinueButtonClicked -> TODO()
+        EmailContract.Event.OnSignUpContinueButtonClicked -> onSignUpContinueButtonClicked()
     }
 
     private fun onSignUpWithEmailButtonClicked() {
 
+
+    }
+    private fun onSignUpContinueButtonClicked() {
+        _effect.tryEmit(EmailContract.Effect.NavigateToSignUp)
     }
 
     private fun onFindPasswordButtonClicked() {
