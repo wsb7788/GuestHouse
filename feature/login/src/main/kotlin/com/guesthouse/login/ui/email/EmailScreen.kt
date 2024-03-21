@@ -7,13 +7,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Checkbox
@@ -21,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,18 +60,18 @@ fun EmailScreen(
     event: (EmailContract.Event) -> Unit,
     state: EmailContract.State,
 ) {
-    var bottomSheetVisible by remember { mutableStateOf(false) }
+    var bottomSheetVisible = remember { mutableStateOf(false) }
 
-    if (bottomSheetVisible) {
+    if (bottomSheetVisible.value) {
         GHBottomSheet(
             onDismissRequest = {
-                bottomSheetVisible = false
+                bottomSheetVisible.value = false
             }
         ) {
             Spacer(modifier = Modifier.height(330.dp))
             GHButton(
                 onClick = {
-                    bottomSheetVisible = false
+                    bottomSheetVisible.value = false
                     event(EmailContract.Event.OnSignUpContinueButtonClicked)
                 },
                 text = stringResource(R.string.agree_and_continue_sign_up_button)
@@ -76,56 +81,101 @@ fun EmailScreen(
     }
 
     Scaffold(
+        modifier = Modifier
+            .fillMaxSize(),
         topBar = {
             CloseScreenButton(onBackClick)
         }
     ) {
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(it)
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(24.dp))
-            EmailLoginText()
-            Spacer(modifier = Modifier.height(29.dp))
-            LoginIdInput(
-                email = state.email,
-                onEmailChanged = { email ->
-                    event(EmailContract.Event.OnEmailChanged(email))
-                }
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            LoginPwInput(
-                password = state.password,
-                onPasswordChanged = { password ->
-                    event(EmailContract.Event.OnPasswordChanged(password))
-                }
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            LoginButton(
-                enabled = state.email.isNotEmpty() && state.password.isNotEmpty(),
-                onLoginButtonClicked = {
-                    event(EmailContract.Event.OnLoginButtonClicked)
-                }
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            LoginSubSection {
-                event(EmailContract.Event.OnFindPasswordButtonClicked)
-            }
-            Spacer(modifier = Modifier.weight(1f))
-            LoginIcon(onEmailLoginClicked = { /*TODO*/ }) {
+                .padding(horizontal = 24.dp)
 
-            }
-            Spacer(modifier = Modifier.height(28.dp))
-            SignUpSection(
-                onSignUpWithEmailButtonClicked = {
-                    bottomSheetVisible = true
-                }
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            EmailLoginSection(
+                state = state,
+                event = event
             )
-            Spacer(modifier = Modifier.height(30.dp))
+
+            Spacer(modifier = Modifier.heightIn(100.dp))
+
+            EmailSubSection(
+                modifier = Modifier,
+                bottomSheetVisible = bottomSheetVisible
+            )
         }
 
+    }
+
+}
+
+@Composable
+private fun EmailLoginSection(
+    modifier: Modifier = Modifier,
+    state: EmailContract.State,
+    event: (EmailContract.Event) -> Unit
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top,
+    ) {
+        Spacer(modifier = Modifier.heightIn(24.dp))
+        EmailLoginText()
+        Spacer(modifier = Modifier.heightIn(29.dp))
+        LoginIdInput(
+            email = state.email,
+            onEmailChanged = { email ->
+                event(EmailContract.Event.OnEmailChanged(email))
+            }
+        )
+        Spacer(modifier = Modifier.heightIn(16.dp))
+        LoginPwInput(
+            password = state.password,
+            onPasswordChanged = { password ->
+                event(EmailContract.Event.OnPasswordChanged(password))
+            }
+        )
+        Spacer(modifier = Modifier.heightIn(30.dp))
+        LoginButton(
+            enabled = state.email.isNotEmpty() && state.password.isNotEmpty(),
+            onLoginButtonClicked = {
+                event(EmailContract.Event.OnLoginButtonClicked)
+            }
+        )
+        Spacer(modifier = Modifier.heightIn(12.dp))
+        LoginSubSection {
+            event(EmailContract.Event.OnFindPasswordButtonClicked)
+        }
+    }
+}
+
+@Composable
+fun EmailSubSection(
+    modifier: Modifier = Modifier,
+    bottomSheetVisible: MutableState<Boolean>) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        LoginIcon(
+            modifier = Modifier.heightIn(54.dp),
+            onEmailLoginClicked = { /*TODO*/ }) {
+
+        }
+        Spacer(modifier = Modifier.heightIn(28.dp))
+        SignUpSection(
+            onSignUpWithEmailButtonClicked = {
+                bottomSheetVisible.value = true
+            }
+        )
+        Spacer(modifier = Modifier.heightIn(30.dp))
     }
 
 }
@@ -169,11 +219,16 @@ fun CloseScreenButton(onBackClick: () -> Unit) {
 
 @Composable
 fun EmailLoginText() {
-    GHText(
-        text = stringResource(id = R.string.email_login),
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp
-    )
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.Start
+    ) {
+        GHText(
+            text = stringResource(id = R.string.email_login),
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp
+        )
+    }
 }
 
 @Composable
