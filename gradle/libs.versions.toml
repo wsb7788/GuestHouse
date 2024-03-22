@@ -57,6 +57,9 @@ navigation-compose = { group = "androidx.navigation", name = "navigation-compose
 #ktor
 ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-websockets = { group = "io.ktor", name = "ktor-client-websockets", version.ref = "ktor" }
 
 #kotlin-serialization
@@ -91,4 +94,4 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 
 [bundles]
 kotest = ["kotest-junit", "kotest-assertions", "kotest-property"]
-ktor = ["ktor-core", "ktor-cio", "ktor-websockets"]
+ktor = ["ktor-core", "ktor-cio", "ktor-websockets", "ktor-logging", "ktor-json", "ktor-negotiation"]
