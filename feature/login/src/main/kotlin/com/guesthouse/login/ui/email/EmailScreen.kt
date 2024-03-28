@@ -129,21 +129,21 @@ private fun EmailLoginSection(
         EmailLoginText()
         Spacer(modifier = Modifier.heightIn(29.dp))
         LoginIdInput(
-            email = state.email,
+            email = state.loginForm.email,
             onEmailChanged = { email ->
                 event(EmailContract.Event.OnEmailChanged(email))
             }
         )
         Spacer(modifier = Modifier.heightIn(16.dp))
         LoginPwInput(
-            password = state.password,
+            password = state.loginForm.password,
             onPasswordChanged = { password ->
                 event(EmailContract.Event.OnPasswordChanged(password))
             }
         )
         Spacer(modifier = Modifier.heightIn(30.dp))
         LoginButton(
-            enabled = state.email.isNotEmpty() && state.password.isNotEmpty(),
+            enabled = state.loginForm.email.isNotEmpty() && state.loginForm.password.isNotEmpty(),
             onLoginButtonClicked = {
                 event(EmailContract.Event.OnLoginButtonClicked)
             }

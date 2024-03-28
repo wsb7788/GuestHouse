@@ -1,14 +1,14 @@
 package com.guesthouse.login.ui.email
 
 import com.guesthouse.base.BaseContract
+import com.guesthouse.entity.LoginForm
 
 sealed interface EmailContract
     : BaseContract<EmailContract.State, EmailContract.Event, EmailContract.Effect> {
 
     data class State(
         val isLoading: Boolean = false,
-        val email: String = "",
-        val password: String = "",
+        val loginForm: LoginForm = LoginForm(),
         val rememberEmail: Boolean = false,
     )
 
